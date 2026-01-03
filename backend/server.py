@@ -740,6 +740,14 @@ async def register(user_data: UserRegister, response: Response):
     doc['updated_at'] = doc['updated_at'].isoformat()
     await db.users.insert_one(doc)
     
+    # Send webhook to n8n for welcome email
+    asyncio.create_task(send_n8n_signup_webhook(
+        email=user.email,
+        name=user.name,
+        discount_code=unique_code,
+        signup_method="email"
+    ))
+    
     # Create session
     session = UserSession(user_id=user.user_id)
     session_doc = session.model_dump()
