@@ -218,7 +218,7 @@ const SizeGuide = () => {
               <div className="diagram-grid">
                 <div className="diagram-visual diagram-container">
                   <img 
-                    src="https://customer-assets.emergentagent.com/job_8d3f0afb-5696-4895-ba8a-26fe34477d18/artifacts/5j1xs598_image.png" 
+                    src="https://customer-assets.emergentagent.com/job_8d3f0afb-5696-4895-ba8a-26fe34477d18/artifacts/to5llofs_1321212131.png" 
                     alt="T-Shirt Measurement Guide"
                     className="measurement-diagram-image"
                   />
