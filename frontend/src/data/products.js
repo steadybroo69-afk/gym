@@ -121,8 +121,7 @@ export const products = [
 
 
 export const getProductById = (id) => {
-  const numId = parseInt(id, 10);
-  return products.find(p => p.id === numId);
+  return products.find(p => p.id === id);
 };
 
 export const getProductsByCategory = (category) => {
@@ -130,8 +129,7 @@ export const getProductsByCategory = (category) => {
 };
 
 export const checkStock = (productId, size) => {
-  const numId = typeof productId === 'string' ? parseInt(productId, 10) : productId;
-  const product = getProductById(numId);
+  const product = getProductById(productId);
   if (!product || !product.stock) return 0;
   return product.stock[size] || 0;
 };

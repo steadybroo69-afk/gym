@@ -52,18 +52,17 @@ export const CartProvider = ({ children }) => {
         updated[existingIndex].quantity += quantity;
         return updated;
       } else {
-        // Add new item - get first image from product images array
-        const productImage = product.images?.[0] || product.image || null;
+        // Add new item
+        const colorData = product.colors?.find(c => c.name === color);
         return [...prev, {
           productId: product.id,
           productName: product.name,
-          variant: product.variant,
           category: product.category,
           color,
           size,
           quantity,
           price: product.price || 45, // Default to shirt price if not provided
-          image: productImage
+          image: colorData?.image || product.image || null
         }];
       }
     });
@@ -109,19 +108,18 @@ export const CartProvider = ({ children }) => {
     let discount = 0;
     let discountDescription = '';
     
-    // Count shirts and shorts (case-insensitive)
-    const shirtItems = cart.filter(item => 
-      item.category?.toLowerCase() === 'shirts' || item.category?.toLowerCase() === 'shirt'
-    );
-    const shortsItems = cart.filter(item => 
-      item.category?.toLowerCase() === 'shorts'
-    );
+    // Count shirts and shorts
+    const shirtItems = cart.filter(item => item.category === 'Shirts');
+    const shortsItems = cart.filter(item => item.category === 'Shorts');
     
     const totalShirts = shirtItems.reduce((sum, item) => sum + item.quantity, 0);
     const totalShorts = shortsItems.reduce((sum, item) => sum + item.quantity, 0);
     
     // Calculate base subtotal
-    cart.forEach(item => {
+    shirtItems.forEach(item => {
+      subtotal += item.price * item.quantity;
+    });
+    shortsItems.forEach(item => {
       subtotal += item.price * item.quantity;
     });
     
