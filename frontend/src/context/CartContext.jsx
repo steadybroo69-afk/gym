@@ -109,18 +109,19 @@ export const CartProvider = ({ children }) => {
     let discount = 0;
     let discountDescription = '';
     
-    // Count shirts and shorts
-    const shirtItems = cart.filter(item => item.category === 'Shirts');
-    const shortsItems = cart.filter(item => item.category === 'Shorts');
+    // Count shirts and shorts (case-insensitive)
+    const shirtItems = cart.filter(item => 
+      item.category?.toLowerCase() === 'shirts' || item.category?.toLowerCase() === 'shirt'
+    );
+    const shortsItems = cart.filter(item => 
+      item.category?.toLowerCase() === 'shorts'
+    );
     
     const totalShirts = shirtItems.reduce((sum, item) => sum + item.quantity, 0);
     const totalShorts = shortsItems.reduce((sum, item) => sum + item.quantity, 0);
     
     // Calculate base subtotal
-    shirtItems.forEach(item => {
-      subtotal += item.price * item.quantity;
-    });
-    shortsItems.forEach(item => {
+    cart.forEach(item => {
       subtotal += item.price * item.quantity;
     });
     
