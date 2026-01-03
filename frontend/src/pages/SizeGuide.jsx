@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ruler, Info, User, ChevronDown } from 'lucide-react';
 
 const SizeGuide = () => {
   const [activeTab, setActiveTab] = useState('tshirt');
   const [unit, setUnit] = useState('in'); // 'cm' or 'in' - default to inches (tech pack standard)
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // T-Shirt measurements from tech pack (US01 - Unisex Performance Tee)
   // Original measurements in INCHES, converted to CM (1 inch = 2.54 cm)
