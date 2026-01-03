@@ -398,6 +398,34 @@ async def send_n8n_signup_webhook(email: str, name: str, discount_code: str, sig
         # Don't fail the registration if webhook fails
         logging.error(f"Failed to send n8n webhook for {email}: {str(e)}")
 
+async def send_n8n_giveaway_webhook(email: str):
+    """Send webhook to n8n when someone enters the giveaway"""
+    try:
+        # Use a different webhook URL for giveaway entries
+        giveaway_webhook_url = os.environ.get('N8N_GIVEAWAY_WEBHOOK_URL', 'https://raze11.app.n8n.cloud/webhook/raze-giveaway-entry')
+        
+        payload = {
+            "email": email,
+            "event_type": "giveaway_entry",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                giveaway_webhook_url,
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=10.0
+            )
+            
+            if response.status_code == 200:
+                logging.info(f"n8n giveaway webhook sent successfully for {email}")
+            else:
+                logging.warning(f"n8n giveaway webhook returned status {response.status_code} for {email}")
+                
+    except Exception as e:
+        logging.error(f"Failed to send n8n giveaway webhook for {email}: {str(e)}")
+
 async def get_current_user(request: Request) -> Optional[dict]:
     """Get current user from session token (cookie or header)"""
     # Try cookie first
