@@ -15,7 +15,7 @@ const faqs = [
       },
       {
         q: "Is shipping free?",
-        a: "Yes! We offer free tracked shipping on all orders over $75. Orders under $75 have a flat rate of $25."
+        a: "Yes! We offer free tracked shipping on all orders over $100 USD. Orders under $100 have a flat rate of $25 USD."
       },
       {
         q: "Do you provide tracking?",
