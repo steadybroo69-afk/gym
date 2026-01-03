@@ -345,61 +345,11 @@ const SizeGuide = () => {
               <h2>How to Measure</h2>
               <div className="diagram-grid">
                 <div className="diagram-visual diagram-container">
-                  <svg viewBox="0 0 280 260" className="shorts-diagram">
-                    {/* Shorts shape - filled teal with cyan outline */}
-                    <path 
-                      d="M50 25 
-                         L50 45 
-                         Q50 55 55 60
-                         L70 180 
-                         Q75 195 90 195
-                         L115 195 
-                         Q125 195 130 180
-                         L140 100 
-                         L150 180 
-                         Q155 195 165 195
-                         L190 195 
-                         Q205 195 210 180
-                         L225 60 
-                         Q230 55 230 45
-                         L230 25 
-                         Q230 20 225 20
-                         L55 20 
-                         Q50 20 50 25
-                         Z" 
-                      fill="#1a4a4a" 
-                      stroke="#00d9ff" 
-                      strokeWidth="1.5"
-                    />
-                    
-                    {/* Drawstring detail */}
-                    <path d="M130 30 Q140 40 150 30" fill="none" stroke="#00d9ff" strokeWidth="1" opacity="0.5"/>
-                    
-                    {/* A - Waist (cyan) */}
-                    <line x1="50" y1="25" x2="230" y2="25" stroke="#00d9ff" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="129" y="8" width="22" height="22" fill="#00d9ff" rx="4"/>
-                    <text x="140" y="24" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">A</text>
-                    
-                    {/* B - Hip (pink) */}
-                    <line x1="48" y1="60" x2="232" y2="60" stroke="#ff6b9d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="10" y="49" width="22" height="22" fill="#ff6b9d" rx="4"/>
-                    <text x="21" y="65" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">B</text>
-                    
-                    {/* C - Outseam (yellow) - right side */}
-                    <line x1="230" y1="25" x2="210" y2="195" stroke="#ffd93d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="235" y="100" width="22" height="22" fill="#ffd93d" rx="4"/>
-                    <text x="246" y="116" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">C</text>
-                    
-                    {/* D - Inseam (green) - inner left leg */}
-                    <line x1="130" y1="100" x2="115" y2="195" stroke="#6bcb77" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="95" y="140" width="22" height="22" fill="#6bcb77" rx="4"/>
-                    <text x="106" y="156" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">D</text>
-                    
-                    {/* E - Leg Opening (magenta) */}
-                    <line x1="165" y1="195" x2="190" y2="195" stroke="#e056fd" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="166" y="205" width="22" height="22" fill="#e056fd" rx="4"/>
-                    <text x="177" y="221" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">E</text>
-                  </svg>
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_8d3f0afb-5696-4895-ba8a-26fe34477d18/artifacts/uhh2s06p_1212.png" 
+                    alt="Shorts Measurement Guide"
+                    className="measurement-diagram-image"
+                  />
                 </div>
                 
                 <div className="measurement-legend">
