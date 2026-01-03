@@ -222,7 +222,7 @@ const ProductDetail = () => {
             {/* Shipping info */}
             <div className="shipping-info">
               <Truck size={18} />
-              <span>Free shipping on orders over $75</span>
+              <span>Free shipping on orders over $100 USD</span>
             </div>
 
             {/* Product Details */}
