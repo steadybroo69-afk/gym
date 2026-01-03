@@ -473,58 +473,11 @@ const SizeGuide = () => {
               <h2>How to Measure</h2>
               <div className="diagram-grid">
                 <div className="diagram-visual diagram-container">
-                  <svg viewBox="0 0 280 260" className="shorts-diagram">
-                    {/* Women's Shorts shape - higher rise, filled teal with cyan outline */}
-                    <path 
-                      d="M50 20 
-                         L50 45 
-                         Q50 55 55 60
-                         L70 180 
-                         Q75 195 90 195
-                         L115 195 
-                         Q125 195 130 180
-                         L140 95 
-                         L150 180 
-                         Q155 195 165 195
-                         L190 195 
-                         Q205 195 210 180
-                         L225 60 
-                         Q230 55 230 45
-                         L230 20 
-                         Q230 15 225 15
-                         L55 15 
-                         Q50 15 50 20
-                         Z" 
-                      fill="#1a4a4a" 
-                      stroke="#00d9ff" 
-                      strokeWidth="1.5"
-                    />
-                    
-                    {/* A - Waist (cyan) */}
-                    <line x1="50" y1="20" x2="230" y2="20" stroke="#00d9ff" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="129" y="3" width="22" height="22" fill="#00d9ff" rx="4"/>
-                    <text x="140" y="19" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">A</text>
-                    
-                    {/* B - Hip (pink) */}
-                    <line x1="48" y1="60" x2="232" y2="60" stroke="#ff6b9d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="10" y="49" width="22" height="22" fill="#ff6b9d" rx="4"/>
-                    <text x="21" y="65" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">B</text>
-                    
-                    {/* C - Outseam (yellow) - right side */}
-                    <line x1="230" y1="20" x2="210" y2="195" stroke="#ffd93d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="235" y="100" width="22" height="22" fill="#ffd93d" rx="4"/>
-                    <text x="246" y="116" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">C</text>
-                    
-                    {/* D - Front Rise (green) - center vertical */}
-                    <line x1="140" y1="20" x2="140" y2="95" stroke="#6bcb77" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="145" y="50" width="22" height="22" fill="#6bcb77" rx="4"/>
-                    <text x="156" y="66" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">D</text>
-                    
-                    {/* E - Leg Opening (magenta) */}
-                    <line x1="165" y1="195" x2="190" y2="195" stroke="#e056fd" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="166" y="205" width="22" height="22" fill="#e056fd" rx="4"/>
-                    <text x="177" y="221" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">E</text>
-                  </svg>
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_8d3f0afb-5696-4895-ba8a-26fe34477d18/artifacts/uhh2s06p_1212.png" 
+                    alt="Shorts Measurement Guide"
+                    className="measurement-diagram-image"
+                  />
                 </div>
                 
                 <div className="measurement-legend">
