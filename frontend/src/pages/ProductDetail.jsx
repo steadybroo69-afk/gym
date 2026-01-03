@@ -173,7 +173,7 @@ const ProductDetail = () => {
             {/* First Order Discount Notice */}
             {user && hasFirstOrderDiscount && hasFirstOrderDiscount() && (
               <div className="discount-notice">
-                <p>🎉 First order discount: 10% off will be applied at checkout</p>
+                <p>🎉 First order discount: Use code <strong>{user.first_order_discount_code}</strong> at checkout for 10% off!</p>
               </div>
             )}
 
