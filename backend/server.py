@@ -47,6 +47,9 @@ shippo_client = None
 if SHIPPO_API_KEY:
     shippo_client = shippo.Shippo(api_key_header=SHIPPO_API_KEY)
 
+# n8n Webhook configuration
+N8N_WEBHOOK_URL = os.environ.get('N8N_WEBHOOK_URL', 'https://raze11.app.n8n.cloud/webhook/raze-account-signup')
+
 # Default sender address for RAZE (US address for Shippo test mode)
 # Update this to your actual warehouse address in production
 RAZE_ADDRESS = {
