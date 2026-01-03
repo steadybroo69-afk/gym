@@ -5,40 +5,36 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/button';
 import { useToast } from '../hooks/use-toast';
-import { Check } from 'lucide-react';
+import { ArrowLeft, Heart, Truck, Lock } from 'lucide-react';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = getProductById(id);
+  const product = getProductById(parseInt(id, 10));
   const { addToCart } = useCart();
   const { user, hasFirstOrderDiscount } = useAuth();
   const { toast } = useToast();
 
-  const [selectedColor, setSelectedColor] = useState(product?.colors[0]?.name || null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!product) {
     return (
       <div className="product-detail-page">
         <div className="container">
-          <p>Product not found</p>
+          <div className="not-found">
+            <p>Product not found</p>
+            <Button onClick={() => navigate('/products')} className="btn-secondary">
+              <ArrowLeft size={16} /> Back to Products
+            </Button>
+          </div>
         </div>
       </div>
     );
   }
 
   const handleAddToCart = () => {
-    if (!selectedColor) {
-      toast({
-        title: "Select a color",
-        description: "Please choose a color before adding to cart.",
-        variant: "destructive"
-      });
-      return;
-    }
-
     if (!selectedSize) {
       toast({
         title: "Select a size",
@@ -48,41 +44,69 @@ const ProductDetail = () => {
       return;
     }
 
-    const stock = checkStock(product.id, selectedColor, selectedSize);
+    const stock = product.stock?.[selectedSize] || 0;
     if (stock < quantity) {
       toast({
         title: "Low stock",
-        description: `Only ${stock} available in ${selectedSize}`,
+        description: stock === 0 ? "This size is out of stock" : `Only ${stock} available in ${selectedSize}`,
         variant: "destructive"
       });
       return;
     }
 
-    addToCart(product, selectedColor, selectedSize, quantity);
+    addToCart(product, product.color, selectedSize, quantity);
     toast({
       title: "Added to cart",
-      description: `${product.name} (${selectedColor}, ${selectedSize}) added to cart.`
+      description: `${product.name} (${product.variant}, ${selectedSize}) added to cart.`
     });
   };
 
-  const currentImage = product.images[selectedColor?.toLowerCase()]?.[0] || product.images.white?.[0];
-  const colorData = product.colors.find(c => c.name === selectedColor);
+  const handleJoinWaitlist = () => {
+    toast({
+      title: "Joining Waitlist",
+      description: "This product is currently sold out. Check back soon!"
+    });
+  };
+
+  const currentImage = product.images?.[currentImageIndex] || product.images?.[0];
 
   return (
     <div className="product-detail-page">
       <div className="container">
+        {/* Back button */}
+        <button className="back-link" onClick={() => navigate('/products')}>
+          <ArrowLeft size={18} /> Back to Products
+        </button>
+
         <div className="product-detail-grid">
           {/* Product Image */}
           <div className="product-detail-image-section">
-            {currentImage ? (
-              <img 
-                src={currentImage} 
-                alt={product.name}
-                className="product-detail-image"
-              />
-            ) : (
-              <div className="product-detail-placeholder">
-                <span>Image coming soon</span>
+            <div className="main-image-wrapper">
+              {currentImage ? (
+                <img 
+                  src={currentImage} 
+                  alt={product.name}
+                  className="product-detail-image"
+                />
+              ) : (
+                <div className="product-detail-placeholder">
+                  <span>Image coming soon</span>
+                </div>
+              )}
+            </div>
+            
+            {/* Thumbnail gallery */}
+            {product.images && product.images.length > 1 && (
+              <div className="thumbnail-gallery">
+                {product.images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    className={`thumbnail-btn ${currentImageIndex === idx ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(idx)}
+                  >
+                    <img src={img} alt={`${product.name} view ${idx + 1}`} />
+                  </button>
+                ))}
               </div>
             )}
           </div>
@@ -90,44 +114,42 @@ const ProductDetail = () => {
           {/* Product Info */}
           <div className="product-detail-info-section">
             <div className="product-detail-header">
+              <span className="product-category-label">{product.category?.toUpperCase()}</span>
               <h1 className="product-detail-title">{product.name}</h1>
+              <p className="product-variant-label">{product.variant}</p>
               <p className="product-detail-price">${product.price}</p>
             </div>
 
-            <p className="product-detail-description">{product.longDescription}</p>
+            <p className="product-detail-description">{product.description}</p>
 
-            {/* Color Selection */}
-            {product.colors.length > 0 && (
-              <div className="product-detail-section">
-                <label className="product-detail-label">
-                  Color: {selectedColor && <span className="selected-value">{selectedColor}</span>}
-                </label>
-                <div className="color-selector">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color.name}
-                      className={`color-option ${selectedColor === color.name ? 'selected' : ''}`}
-                      onClick={() => setSelectedColor(color.name)}
-                      style={{ backgroundColor: color.hex }}
-                      title={color.name}
-                    >
-                      {selectedColor === color.name && (
-                        <Check size={16} className="color-check" />
-                      )}
-                    </button>
-                  ))}
-                </div>
+            {/* Color Display */}
+            <div className="product-detail-section">
+              <label className="product-detail-label">
+                Color: <span className="selected-value">{product.variant}</span>
+              </label>
+              <div className="color-display">
+                <div 
+                  className="color-swatch active"
+                  style={{ 
+                    backgroundColor: product.color === 'Black' ? '#1a1a1a' : '#666'
+                  }}
+                />
               </div>
-            )}
+            </div>
 
             {/* Size Selection */}
             <div className="product-detail-section">
-              <label className="product-detail-label">
-                Size: {selectedSize && <span className="selected-value">{selectedSize}</span>}
-              </label>
-              <div className="size-selector">
-                {product.sizes.map((size) => {
-                  const stock = colorData ? colorData.stock[size] : 0;
+              <div className="size-header">
+                <label className="product-detail-label">
+                  Size: {selectedSize && <span className="selected-value">{selectedSize}</span>}
+                </label>
+                <button className="size-guide-link" onClick={() => navigate('/size-guide')}>
+                  Size Guide
+                </button>
+              </div>
+              <div className="size-selector-detail">
+                {product.sizes?.map((size) => {
+                  const stock = product.stock?.[size] || 0;
                   const isLowStock = stock > 0 && stock < 5;
                   const isOutOfStock = stock === 0;
 
@@ -140,7 +162,7 @@ const ProductDetail = () => {
                     >
                       <span className="size-label">{size}</span>
                       {isLowStock && !isOutOfStock && (
-                        <span className="stock-indicator">Low stock</span>
+                        <span className="stock-indicator">Low</span>
                       )}
                     </button>
                   );
@@ -149,20 +171,53 @@ const ProductDetail = () => {
             </div>
 
             {/* First Order Discount Notice */}
-            {user && hasFirstOrderDiscount() && (
+            {user && hasFirstOrderDiscount && hasFirstOrderDiscount() && (
               <div className="discount-notice">
-                <p>First order discount: 10% off will be applied at checkout</p>
+                <p>🎉 First order discount: 10% off will be applied at checkout</p>
               </div>
             )}
 
-            {/* Add to Cart */}
+            {/* Add to Cart or Join Waitlist */}
             <div className="product-detail-actions">
-              <Button 
-                className="btn-primary btn-large"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </Button>
+              {product.inStock ? (
+                <>
+                  <div className="quantity-control">
+                    <button 
+                      className="qty-btn"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      disabled={quantity <= 1}
+                    >
+                      -
+                    </button>
+                    <span className="qty-value">{quantity}</span>
+                    <button 
+                      className="qty-btn"
+                      onClick={() => setQuantity(quantity + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <Button 
+                    className="btn-primary btn-large btn-add-cart"
+                    onClick={handleAddToCart}
+                  >
+                    Add to Cart — ${(product.price * quantity).toFixed(2)}
+                  </Button>
+                </>
+              ) : (
+                <Button 
+                  className="btn-waitlist btn-large"
+                  onClick={handleJoinWaitlist}
+                >
+                  <Lock size={16} /> Join Waitlist
+                </Button>
+              )}
+            </div>
+
+            {/* Shipping info */}
+            <div className="shipping-info">
+              <Truck size={18} />
+              <span>Free shipping on orders over $75</span>
             </div>
 
             {/* Product Details */}
@@ -170,8 +225,9 @@ const ProductDetail = () => {
               <h3 className="details-heading">Details</h3>
               <ul>
                 <li>Technical fabric designed for training</li>
-                <li>Minimal branding</li>
-                <li>Built for movement</li>
+                <li>Minimal RAZE branding with {product.logo} logo</li>
+                <li>Built for movement and flexibility</li>
+                <li>Machine washable</li>
                 <li>Worldwide shipping available</li>
               </ul>
             </div>
