@@ -217,68 +217,11 @@ const SizeGuide = () => {
               <h2>How to Measure</h2>
               <div className="diagram-grid">
                 <div className="diagram-visual diagram-container">
-                  <svg viewBox="0 0 280 380" className="tshirt-diagram">
-                    {/* T-shirt shape - filled teal with cyan outline */}
-                    <path 
-                      d="M140 20
-                         C125 20 115 28 110 35
-                         L110 45
-                         C120 55 130 58 140 58
-                         C150 58 160 55 170 45
-                         L170 35
-                         C165 28 155 20 140 20
-                         Z" 
-                      fill="#1a4a4a" 
-                      stroke="#00d9ff" 
-                      strokeWidth="1.5"
-                    />
-                    
-                    {/* Main body */}
-                    <path 
-                      d="M110 35
-                         L70 50
-                         L35 70
-                         L20 95
-                         L20 150
-                         L65 150
-                         L65 360
-                         L215 360
-                         L215 150
-                         L260 150
-                         L260 95
-                         L245 70
-                         L210 50
-                         L170 35" 
-                      fill="#1a4a4a" 
-                      stroke="#00d9ff" 
-                      strokeWidth="1.5"
-                    />
-                    
-                    {/* B - Shoulder Width (pink, dashed, horizontal at top) */}
-                    <line x1="70" y1="50" x2="210" y2="50" stroke="#ff6b9d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="55" y="38" width="22" height="22" fill="#ff6b9d" rx="4"/>
-                    <text x="66" y="54" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">B</text>
-                    
-                    {/* A - Chest Width (cyan, dashed) */}
-                    <line x1="65" y1="170" x2="215" y2="170" stroke="#00d9ff" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="129" y="158" width="22" height="22" fill="#00d9ff" rx="4"/>
-                    <text x="140" y="174" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">A</text>
-                    
-                    {/* C - Body Length (yellow, vertical center) */}
-                    <line x1="140" y1="58" x2="140" y2="360" stroke="#ffd93d" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="129" y="280" width="22" height="22" fill="#ffd93d" rx="4"/>
-                    <text x="140" y="296" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">C</text>
-                    
-                    {/* D - Sleeve Length (green, diagonal on right sleeve) */}
-                    <line x1="210" y1="50" x2="260" y2="150" stroke="#6bcb77" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="220" y="90" width="22" height="22" fill="#6bcb77" rx="4"/>
-                    <text x="231" y="106" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">D</text>
-                    
-                    {/* E - Sleeve Opening (magenta, at sleeve hem) */}
-                    <line x1="215" y1="150" x2="260" y2="150" stroke="#e056fd" strokeWidth="2" strokeDasharray="6,4"/>
-                    <rect x="225" y="128" width="22" height="22" fill="#e056fd" rx="4"/>
-                    <text x="236" y="144" fill="#fff" fontSize="12" fontWeight="bold" textAnchor="middle">E</text>
-                  </svg>
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_8d3f0afb-5696-4895-ba8a-26fe34477d18/artifacts/5j1xs598_image.png" 
+                    alt="T-Shirt Measurement Guide"
+                    className="measurement-diagram-image"
+                  />
                 </div>
                 
                 <div className="measurement-legend">
