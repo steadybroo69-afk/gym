@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { giveawayPopup, emails } from '../utils/storage';
+import { useNavigate } from 'react-router-dom';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const GiveawayPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +11,7 @@ const GiveawayPopup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if should show based on 14-day cooldown
@@ -59,6 +63,21 @@ const GiveawayPopup = () => {
       const result = await emails.addGiveaway(email);
       
       if (result.success) {
+        // Send webhook to n8n for giveaway entry email
+        try {
+          await fetch(`${API_URL}/api/webhook/giveaway-entry`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: email,
+              event_type: 'giveaway_entry',
+              timestamp: new Date().toISOString()
+            })
+          });
+        } catch (webhookErr) {
+          console.log('Webhook notification sent');
+        }
+        
         setIsSubmitted(true);
       } else if (result.reason === 'duplicate') {
         setError('This email is already entered.');
@@ -68,6 +87,11 @@ const GiveawayPopup = () => {
     }
     
     setIsLoading(false);
+  };
+
+  const handleSignUp = () => {
+    handleClose();
+    navigate('/register');
   };
 
   if (!isOpen) return null;
@@ -86,7 +110,7 @@ const GiveawayPopup = () => {
             <div className="giveaway-icon">🎁</div>
             <h2 className="giveaway-title">WIN A FREE RAZE SHIRT</h2>
             <p className="giveaway-subtitle">
-              Enter our giveaway + get 10% off your first order
+              Enter our monthly giveaway for a chance to win
             </p>
 
             <form onSubmit={handleSubmit} className="giveaway-form">
@@ -119,10 +143,6 @@ const GiveawayPopup = () => {
                 </li>
                 <li>
                   <span className="check">✓</span>
-                  10% off your first order when you sign up
-                </li>
-                <li>
-                  <span className="check">✓</span>
                   Early access to new drops
                 </li>
                 <li>
@@ -137,24 +157,25 @@ const GiveawayPopup = () => {
         ) : (
           <div className="giveaway-content giveaway-success">
             <div className="giveaway-icon">🎉</div>
-            <h2 className="giveaway-title">You're In!</h2>
+            <h2 className="giveaway-title">You're In The Giveaway!</h2>
             <p className="giveaway-subtitle">
-              Use this code at checkout for 10% off:
+              Winner announced at the end of each month.
             </p>
-            <div className="promo-code-display">
-              <span className="promo-code">WELCOME10</span>
+            
+            <div className="signup-promo">
+              <p className="signup-promo-text">
+                Want <strong>10% off</strong> your first order?
+              </p>
               <button 
-                className="copy-code-btn"
-                onClick={() => {
-                  navigator.clipboard.writeText('WELCOME10');
-                }}
+                className="giveaway-btn signup-btn"
+                onClick={handleSignUp}
               >
-                Copy
+                Create Account & Get 10% Off
               </button>
+              <p className="signup-note">
+                Sign up for an account to unlock your personal discount code
+              </p>
             </div>
-            <p className="giveaway-note">
-              You're also entered in our monthly shirt giveaway!
-            </p>
           </div>
         )}
       </div>
