@@ -779,7 +779,10 @@ async def login(credentials: UserLogin, response: Response):
             email=user['email'],
             name=user['name'],
             picture=user.get('picture'),
-            auth_provider=user['auth_provider']
+            auth_provider=user['auth_provider'],
+            first_order_discount_code=user.get('first_order_discount_code'),
+            has_used_first_order_discount=user.get('has_used_first_order_discount', False),
+            order_count=user.get('order_count', 0)
         )
     }
 
