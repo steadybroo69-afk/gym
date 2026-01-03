@@ -9087,24 +9087,25 @@ body {
 .measurement-legend {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
+  padding: 20px 0;
 }
 
 .legend-item {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: flex-start;
 }
 
 .legend-marker {
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
   color: #000;
   flex-shrink: 0;
 }
@@ -9117,13 +9118,13 @@ body {
 .legend-item strong {
   display: block;
   color: var(--text-primary);
-  font-size: 14px;
-  margin-bottom: 4px;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
 .legend-item p {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
   line-height: 1.5;
 }
