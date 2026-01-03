@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Trash2, Plus, Minus, Tag, Truck } from 'lucide-react';
 
-const FREE_SHIPPING_THRESHOLD = 75;
+const FREE_SHIPPING_THRESHOLD = 100;
 
 const Cart = () => {
   const navigate = useNavigate();
