@@ -261,6 +261,9 @@ class User(BaseModel):
     picture: Optional[str] = None
     password_hash: Optional[str] = None  # For email/password auth
     auth_provider: str = "email"  # "email" or "google"
+    first_order_discount_code: Optional[str] = None  # Unique 10% off code for first order
+    has_used_first_order_discount: bool = False  # Track if discount was used
+    order_count: int = 0  # Number of orders placed
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
