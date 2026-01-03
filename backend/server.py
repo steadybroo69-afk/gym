@@ -689,12 +689,18 @@ async def register(user_data: UserRegister, response: Response):
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
     
+    # Generate unique first order discount code for this user
+    unique_code = f"WELCOME{uuid.uuid4().hex[:6].upper()}"
+    
     # Create user
     user = User(
         email=user_data.email.lower(),
         name=user_data.name,
         password_hash=hash_password(user_data.password),
-        auth_provider="email"
+        auth_provider="email",
+        first_order_discount_code=unique_code,
+        has_used_first_order_discount=False,
+        order_count=0
     )
     
     doc = user.model_dump()
@@ -727,7 +733,10 @@ async def register(user_data: UserRegister, response: Response):
             email=user.email,
             name=user.name,
             picture=user.picture,
-            auth_provider=user.auth_provider
+            auth_provider=user.auth_provider,
+            first_order_discount_code=user.first_order_discount_code,
+            has_used_first_order_discount=user.has_used_first_order_discount,
+            order_count=user.order_count
         )
     }
 
