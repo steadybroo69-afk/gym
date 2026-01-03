@@ -10331,3 +10331,71 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Discount Banner for Dashboard */
+.discount-banner {
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 150, 200, 0.1) 100%);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.discount-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.discount-banner-content > svg {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.discount-banner-text {
+  flex: 1;
+}
+
+.discount-banner-text h3 {
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.discount-banner-text p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.discount-banner-text strong {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.discount-code-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px dashed var(--brand-primary);
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: var(--brand-primary);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .discount-banner-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .discount-code-box {
+    width: 100%;
+    justify-content: center;
+  }
+}
