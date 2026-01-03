@@ -121,7 +121,8 @@ export const products = [
 
 
 export const getProductById = (id) => {
-  return products.find(p => p.id === id);
+  const numId = parseInt(id, 10);
+  return products.find(p => p.id === numId);
 };
 
 export const getProductsByCategory = (category) => {
