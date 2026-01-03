@@ -52,17 +52,18 @@ export const CartProvider = ({ children }) => {
         updated[existingIndex].quantity += quantity;
         return updated;
       } else {
-        // Add new item
-        const colorData = product.colors?.find(c => c.name === color);
+        // Add new item - get image from product
+        const productImage = product.images?.[0] || product.image || null;
         return [...prev, {
           productId: product.id,
           productName: product.name,
+          variant: product.variant,
           category: product.category,
           color,
           size,
           quantity,
           price: product.price || 45, // Default to shirt price if not provided
-          image: colorData?.image || product.image || null
+          image: productImage
         }];
       }
     });
