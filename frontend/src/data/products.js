@@ -130,7 +130,8 @@ export const getProductsByCategory = (category) => {
 };
 
 export const checkStock = (productId, size) => {
-  const product = getProductById(productId);
+  const numId = typeof productId === 'string' ? parseInt(productId, 10) : productId;
+  const product = getProductById(numId);
   if (!product || !product.stock) return 0;
   return product.stock[size] || 0;
 };
