@@ -10399,3 +10399,76 @@ body {
     justify-content: center;
   }
 }
+
+/* Giveaway Signup Promo */
+.signup-promo {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.signup-promo-text {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.signup-promo-text strong {
+  color: var(--brand-primary);
+}
+
+.signup-btn {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.signup-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Early Access Benefits */
+.early-access-benefits {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.early-access-benefits .benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.early-access-benefits .benefits-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.early-access-benefits .check {
+  color: var(--brand-primary);
+  font-weight: bold;
+}
+
+.popup-login-link {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--brand-primary);
+  cursor: pointer;
+  font-size: inherit;
+  text-decoration: underline;
+}
+
+.link-btn:hover {
+  opacity: 0.8;
+}
