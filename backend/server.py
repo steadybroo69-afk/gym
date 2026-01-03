@@ -827,12 +827,18 @@ async def exchange_session(request: Request, response: Response):
         )
         user_id = user['user_id']
     else:
+        # Generate unique first order discount code for new user
+        unique_code = f"WELCOME{uuid.uuid4().hex[:6].upper()}"
+        
         # Create new user
         new_user = User(
             email=auth_data['email'].lower(),
             name=auth_data.get('name', 'User'),
             picture=auth_data.get('picture'),
-            auth_provider="google"
+            auth_provider="google",
+            first_order_discount_code=unique_code,
+            has_used_first_order_discount=False,
+            order_count=0
         )
         doc = new_user.model_dump()
         doc['created_at'] = doc['created_at'].isoformat()
@@ -866,7 +872,10 @@ async def exchange_session(request: Request, response: Response):
             email=auth_data['email'],
             name=auth_data.get('name', 'User'),
             picture=auth_data.get('picture'),
-            auth_provider="google"
+            auth_provider="google",
+            first_order_discount_code=user.get('first_order_discount_code'),
+            has_used_first_order_discount=user.get('has_used_first_order_discount', False),
+            order_count=user.get('order_count', 0)
         )
     }
 
@@ -883,7 +892,10 @@ async def get_current_user_info(request: Request):
         email=user['email'],
         name=user['name'],
         picture=user.get('picture'),
-        auth_provider=user.get('auth_provider', 'email')
+        auth_provider=user.get('auth_provider', 'email'),
+        first_order_discount_code=user.get('first_order_discount_code'),
+        has_used_first_order_discount=user.get('has_used_first_order_discount', False),
+        order_count=user.get('order_count', 0)
     )
 
 @api_router.post("/auth/logout")
