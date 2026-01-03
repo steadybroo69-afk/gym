@@ -855,6 +855,7 @@ async def exchange_session(request: Request, response: Response):
     # Check if user exists
     user = await db.users.find_one({"email": auth_data['email'].lower()}, {"_id": 0})
     
+    is_new_user = False
     if user:
         # Update existing user
         await db.users.update_one(
@@ -869,6 +870,7 @@ async def exchange_session(request: Request, response: Response):
     else:
         # Generate unique first order discount code for new user
         unique_code = f"WELCOME{uuid.uuid4().hex[:6].upper()}"
+        is_new_user = True
         
         # Create new user
         new_user = User(
@@ -886,6 +888,14 @@ async def exchange_session(request: Request, response: Response):
         await db.users.insert_one(doc)
         user_id = new_user.user_id
         user = doc
+        
+        # Send webhook to n8n for welcome email (only for new users)
+        asyncio.create_task(send_n8n_signup_webhook(
+            email=new_user.email,
+            name=new_user.name,
+            discount_code=unique_code,
+            signup_method="google"
+        ))
     
     # Create session
     session = UserSession(user_id=user_id)
