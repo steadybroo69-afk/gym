@@ -1,0 +1,184 @@
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { X, Lock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import ShareButton from './ShareButton';
+import WaitlistModal from './WaitlistModal';
+
+// WAITLIST MODE - All products are on waitlist (sold out)
+const WAITLIST_MODE = true;
+
+const ProductModal = ({ isOpen, onClose, product }) => {
+  const [showBack, setShowBack] = useState(false);
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen || !product) return null;
+
+  const handleJoinWaitlist = () => {
+    setWaitlistOpen(true);
+  };
+
+  const toggleView = () => {
+    setShowBack(!showBack);
+  };
+
+  // Render modal in a portal at body level
+  return ReactDOM.createPortal(
+    <>
+      <div className="product-modal-overlay" onClick={onClose}>
+        <div className="product-modal" onClick={(e) => e.stopPropagation()}>
+          {/* Close button */}
+          <button className="modal-close" onClick={onClose}>
+            <X size={24} />
+          </button>
+
+          <div className="modal-content">
+            {/* Left side - Product image */}
+            <div className="modal-image-section">
+              {/* Share button */}
+              <div className="modal-share">
+                <ShareButton product={product} />
+              </div>
+              
+              <div className="modal-image-container">
+                {/* Navigation arrows */}
+                <button 
+                  className={`view-nav view-nav-left ${!showBack ? 'disabled' : ''}`}
+                  onClick={() => setShowBack(false)}
+                  disabled={!showBack}
+                >
+                  <ChevronLeft size={28} />
+                </button>
+                
+                <img 
+                  src={showBack ? (product.backImage || product.image) : product.image}
+                  alt={`${product.name} - ${showBack ? 'Back' : 'Front'} View`}
+                  className="modal-product-image"
+                />
+                
+                <button 
+                  className={`view-nav view-nav-right ${showBack ? 'disabled' : ''}`}
+                  onClick={() => setShowBack(true)}
+                  disabled={showBack}
+                >
+                  <ChevronRight size={28} />
+                </button>
+              </div>
+
+              {/* View toggle buttons */}
+              <div className="modal-view-toggle">
+                <button 
+                  className={`modal-toggle-btn ${!showBack ? 'active' : ''}`}
+                  onClick={() => setShowBack(false)}
+                >
+                  Front
+                </button>
+                <button 
+                  className={`modal-toggle-btn ${showBack ? 'active' : ''}`}
+                  onClick={() => setShowBack(true)}
+                >
+                  Back
+                </button>
+              </div>
+            </div>
+
+            {/* Right side - Product details */}
+            <div className="modal-details-section">
+              <div className="modal-product-info">
+                <span className="modal-category">{product.category}</span>
+                <h2 className="modal-product-name">{product.name}</h2>
+                <span className="modal-variant">{product.variant}</span>
+              </div>
+
+              <div className="modal-price-section">
+                <span className="modal-price">${product.price}</span>
+                {/* Removed stock urgency - sold out/waitlist only */}
+              </div>
+
+              {/* Size selector */}
+              <div className="modal-size-section">
+                <div className="modal-size-header">
+                  <span>Select Size</span>
+                  <button 
+                    className="size-guide-btn"
+                    onClick={() => {
+                      onClose();
+                      navigate('/size-guide');
+                    }}
+                  >
+                    Size Guide
+                  </button>
+                </div>
+                <div className="modal-sizes">
+                  {(product.sizes || ['XS', 'S', 'M', 'L']).map(size => (
+                    <button
+                      key={size}
+                      className={`modal-size-btn ${selectedSize === size ? 'active' : ''}`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Join Waitlist button (waitlist mode) */}
+              <button 
+                className="modal-add-to-cart waitlist-btn"
+                onClick={handleJoinWaitlist}
+              >
+                <Lock size={18} /> Join Waitlist
+              </button>
+
+              {/* Sold out notice */}
+              <div className="modal-bundle-nudge">
+                First drop <strong>SOLD OUT</strong> — Secure your spot for Feb 2
+              </div>
+
+              {/* Product features */}
+              <div className="modal-features">
+                <h4>Details</h4>
+                <ul>
+                  <li>Engineered for unrestricted overhead and full-range movement</li>
+                  <li>Designed for those who value freedom of movement</li>
+                  <li>Athletic cut that stays in place under tension</li>
+                  <li>Lightweight, sweat-wicking fabric for high-output sessions</li>
+                  <li>Holds structure and fit after repeated washes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Waitlist Modal */}
+      <WaitlistModal 
+        isOpen={waitlistOpen}
+        onClose={() => setWaitlistOpen(false)}
+        product={{
+          ...product,
+          variant: product.variant,
+          size: selectedSize
+        }}
+      />
+    </>,
+    document.body
+  );
+};
+
+export default ProductModal;
