@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { popup, emails } from '../utils/storage';
+import { popup } from '../utils/storage';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const EmailPopup = ({ isOpen: externalIsOpen, onClose: externalOnClose }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   // Determine if popup is controlled externally or internally
   const isControlled = externalIsOpen !== undefined;
@@ -50,39 +50,40 @@ const EmailPopup = ({ isOpen: externalIsOpen, onClose: externalOnClose }) => {
       setInternalIsOpen(false);
     }
     popup.markDismissed();
-    // Reset state for next time
-    setEmail('');
-    setIsSubmitted(false);
-    setError('');
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+  const handleSignUp = () => {
+    handleClose();
+    navigate('/register');
+  };
 
-    if (!email || !email.includes('@')) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const result = await emails.addEarlyAccess(email);
-      
-      if (result.success) {
-        setIsSubmitted(true);
-      } else if (result.reason === 'duplicate') {
-        setError('This email is already registered.');
-      }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    }
-    
-    setIsLoading(false);
+  const handleLogin = () => {
+    handleClose();
+    navigate('/login');
   };
 
   if (!isOpen) return null;
+
+  // If user is already authenticated, show different message
+  if (isAuthenticated) {
+    return (
+      <>
+        <div className="popup-overlay" onClick={handleClose} />
+        <div className="popup-container">
+          <button className="popup-close" onClick={handleClose} aria-label="Close">
+            <X size={20} />
+          </button>
+          <div className="popup-content popup-success">
+            <div className="popup-success-icon">✓</div>
+            <h2 className="popup-success-title">You Have Early Access!</h2>
+            <p className="popup-success-subtitle">
+              You're already signed in and have access to all drops.
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -95,45 +96,43 @@ const EmailPopup = ({ isOpen: externalIsOpen, onClose: externalOnClose }) => {
           <X size={20} />
         </button>
 
-        {!isSubmitted ? (
-          // Initial State
-          <div className="popup-content">
-            <h2 className="popup-title">Get Early Access</h2>
-            <p className="popup-subtitle">
-              Join the list for drop notifications and launch benefit access.
-            </p>
+        <div className="popup-content">
+          <h2 className="popup-title">Get Early Access</h2>
+          <p className="popup-subtitle">
+            Create an account to unlock early access to drops and get 10% off your first order.
+          </p>
 
-            <form onSubmit={handleSubmit} className="popup-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="popup-input"
-                disabled={isLoading}
-              />
-              {error && (
-                <p style={{ color: '#ef4444', fontSize: '0.8rem', margin: '0', textAlign: 'left' }}>
-                  {error}
-                </p>
-              )}
-              <button
-                type="submit"
-                className="popup-btn"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Joining...' : 'JOIN'}
-              </button>
-            </form>
+          <div className="early-access-benefits">
+            <ul className="benefits-list">
+              <li>
+                <span className="check">✓</span>
+                10% off your first order
+              </li>
+              <li>
+                <span className="check">✓</span>
+                Early access to new drops
+              </li>
+              <li>
+                <span className="check">✓</span>
+                Order tracking & history
+              </li>
+            </ul>
           </div>
-        ) : (
-          // Success State
-          <div className="popup-content popup-success">
-            <div className="popup-success-icon">✓</div>
-            <h2 className="popup-success-title">You're in.</h2>
-            <p className="popup-success-subtitle">Watch for Drop 01.</p>
-          </div>
-        )}
+
+          <button
+            onClick={handleSignUp}
+            className="popup-btn"
+          >
+            Create Account
+          </button>
+          
+          <p className="popup-login-link">
+            Already have an account?{' '}
+            <button onClick={handleLogin} className="link-btn">
+              Log in
+            </button>
+          </p>
+        </div>
       </div>
     </>
   );
