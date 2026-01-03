@@ -10290,3 +10290,21 @@ body {
   color: var(--text-primary);
   font-size: 18px;
 }
+
+/* Measurement Diagram Image */
+.measurement-diagram-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.diagram-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  min-height: 350px;
+}
