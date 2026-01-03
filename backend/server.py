@@ -910,6 +910,61 @@ async def logout(request: Request, response: Response):
     
     return {"success": True, "message": "Logged out"}
 
+@api_router.post("/auth/validate-first-order-discount")
+async def validate_first_order_discount(request: Request):
+    """Validate user's unique first order discount code"""
+    user = await get_current_user(request)
+    
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    body = await request.json()
+    code = body.get('code', '').upper()
+    
+    # Check if user has already used their first order discount
+    if user.get('has_used_first_order_discount', False):
+        return {
+            "valid": False,
+            "message": "You have already used your first order discount"
+        }
+    
+    # Check if the code matches the user's unique code
+    user_code = user.get('first_order_discount_code', '').upper()
+    if not user_code or code != user_code:
+        return {
+            "valid": False,
+            "message": "Invalid discount code for this account"
+        }
+    
+    return {
+        "valid": True,
+        "discount_type": "percentage",
+        "discount_value": 10,
+        "message": "10% first order discount applied!"
+    }
+
+@api_router.post("/auth/use-first-order-discount")
+async def use_first_order_discount(request: Request):
+    """Mark first order discount as used after successful order"""
+    user = await get_current_user(request)
+    
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    # Update user to mark discount as used and increment order count
+    await db.users.update_one(
+        {"user_id": user['user_id']},
+        {
+            "$set": {
+                "has_used_first_order_discount": True,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            },
+            "$inc": {"order_count": 1}
+        }
+    )
+    
+    return {"success": True, "message": "First order discount marked as used"}
+
 @api_router.get("/auth/orders")
 async def get_user_orders(request: Request):
     """Get orders for current user"""
