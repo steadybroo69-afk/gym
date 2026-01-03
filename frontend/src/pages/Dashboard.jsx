@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Package, ChevronRight, LogOut, Loader2 } from 'lucide-react';
+import { User, Package, ChevronRight, LogOut, Loader2, Gift, Tag } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user, logout, getUserOrders, isAuthenticated, loading } = useAuth();
+  const { user, logout, getUserOrders, isAuthenticated, loading, hasFirstOrderDiscount } = useAuth();
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
 
@@ -92,6 +92,23 @@ const Dashboard = () => {
           <h1 className="dashboard-title">My Account</h1>
           <p className="dashboard-subtitle">Welcome back, {user.name || 'Athlete'}</p>
         </div>
+
+        {/* First Order Discount Banner */}
+        {hasFirstOrderDiscount && hasFirstOrderDiscount() && (
+          <div className="discount-banner">
+            <div className="discount-banner-content">
+              <Gift size={24} />
+              <div className="discount-banner-text">
+                <h3>Your First Order Discount!</h3>
+                <p>Use code <strong>{user.first_order_discount_code}</strong> at checkout for 10% off</p>
+              </div>
+              <div className="discount-code-box">
+                <Tag size={16} />
+                <span>{user.first_order_discount_code}</span>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="dashboard-grid">
           {/* Profile Card */}
