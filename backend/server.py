@@ -288,6 +288,9 @@ class UserResponse(BaseModel):
     name: str
     picture: Optional[str] = None
     auth_provider: str
+    first_order_discount_code: Optional[str] = None
+    has_used_first_order_discount: bool = False
+    order_count: int = 0
 
 
 # Inventory Models
