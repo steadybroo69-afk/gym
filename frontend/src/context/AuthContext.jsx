@@ -125,6 +125,50 @@ export const AuthProvider = ({ children }) => {
     return response.json();
   };
 
+  // Check if user has unused first order discount
+  const hasFirstOrderDiscount = () => {
+    return user && !user.has_used_first_order_discount && user.first_order_discount_code;
+  };
+
+  // Get the user's unique discount code
+  const getFirstOrderDiscountCode = () => {
+    if (hasFirstOrderDiscount()) {
+      return user.first_order_discount_code;
+    }
+    return null;
+  };
+
+  // Validate the discount code
+  const validateFirstOrderDiscount = async (code) => {
+    const response = await fetch(`${API_URL}/api/auth/validate-first-order-discount`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ code })
+    });
+
+    return response.json();
+  };
+
+  // Mark discount as used after successful order
+  const useFirstOrderDiscount = async () => {
+    const response = await fetch(`${API_URL}/api/auth/use-first-order-discount`, {
+      method: 'POST',
+      credentials: 'include'
+    });
+
+    if (response.ok) {
+      // Update local user state
+      setUser(prev => ({
+        ...prev,
+        has_used_first_order_discount: true,
+        order_count: (prev.order_count || 0) + 1
+      }));
+    }
+
+    return response.json();
+  };
+
   return (
     <AuthContext.Provider value={{
       user,
@@ -136,7 +180,11 @@ export const AuthProvider = ({ children }) => {
       logout,
       checkAuth,
       getUserOrders,
-      isAuthenticated: !!user
+      isAuthenticated: !!user,
+      hasFirstOrderDiscount,
+      getFirstOrderDiscountCode,
+      validateFirstOrderDiscount,
+      useFirstOrderDiscount
     }}>
       {children}
     </AuthContext.Provider>
