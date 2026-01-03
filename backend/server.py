@@ -369,6 +369,35 @@ def verify_password(password: str, password_hash: str) -> bool:
     except:
         return False
 
+async def send_n8n_signup_webhook(email: str, name: str, discount_code: str, signup_method: str):
+    """Send webhook to n8n when a user signs up"""
+    try:
+        payload = {
+            "email": email,
+            "name": name,
+            "discount_code": discount_code,
+            "signup_method": signup_method,
+            "event_type": "account_signup",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                N8N_WEBHOOK_URL,
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=10.0
+            )
+            
+            if response.status_code == 200:
+                logging.info(f"n8n webhook sent successfully for {email}")
+            else:
+                logging.warning(f"n8n webhook returned status {response.status_code} for {email}")
+                
+    except Exception as e:
+        # Don't fail the registration if webhook fails
+        logging.error(f"Failed to send n8n webhook for {email}: {str(e)}")
+
 async def get_current_user(request: Request) -> Optional[dict]:
     """Get current user from session token (cookie or header)"""
     # Try cookie first
