@@ -696,11 +696,32 @@ async def subscribe_email(input: EmailSubscriptionCreate):
     
     await db.email_subscriptions.insert_one(doc)
     
+    # If this is a giveaway entry, send webhook to n8n
+    if input.source == "giveaway_popup":
+        asyncio.create_task(send_n8n_giveaway_webhook(input.email.lower()))
+    
     return EmailResponse(
         success=True,
         message="Successfully subscribed!",
         email=input.email
     )
+
+@api_router.post("/webhook/giveaway-entry")
+async def giveaway_entry_webhook(request: Request):
+    """Webhook endpoint for giveaway entries - triggers n8n workflow"""
+    try:
+        body = await request.json()
+        email = body.get('email', '')
+        
+        if email:
+            # Send to n8n
+            asyncio.create_task(send_n8n_giveaway_webhook(email))
+            return {"success": True, "message": "Webhook triggered"}
+        
+        return {"success": False, "message": "Email required"}
+    except Exception as e:
+        logging.error(f"Giveaway webhook error: {str(e)}")
+        return {"success": False, "message": str(e)}
 
 @api_router.get("/emails/list", response_model=List[EmailSubscription])
 async def get_email_subscriptions(source: Optional[str] = None):
