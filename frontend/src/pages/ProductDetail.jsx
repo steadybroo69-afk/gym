@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById, checkStock } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -18,6 +18,11 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Scroll to top when component mounts or product changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!product) {
     return (
