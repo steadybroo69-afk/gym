@@ -202,13 +202,13 @@ const ProductCategories = () => {
           </div>
         </div>
 
-        {/* ROW 2: Performance Shorts */}
+        {/* ROW 2: Men's Performance Shorts */}
         <div className="product-row shorts-row">
-          <h3 className="row-title">Performance Shorts</h3>
+          <h3 className="row-title">Men's Performance Shorts</h3>
           <p className="row-subtitle">Designed for full-range movement — built to match Performance T-Shirts</p>
           
           <div className="product-grid shorts-grid">
-            {shorts.map((short) => {
+            {mensShorts.map((short) => {
               const selectedSize = selectedSizes[short.id] || 'M';
               const isAdded = addedToCart[short.id];
               const isComingSoon = short.status === 'coming_soon';
@@ -252,7 +252,97 @@ const ProductCategories = () => {
                     <div className="product-variant">{short.variant}</div>
                     <div className="product-price-row">
                       <span className="product-price">${short.price}</span>
-                      {/* Stock urgency removed - sold out/waitlist only */}
+                    </div>
+                    
+                    {/* Size Selector */}
+                    <div className="size-selector">
+                      {short.sizes.map((size) => (
+                        <button
+                          key={size}
+                          className={`size-btn ${selectedSize === size ? 'active' : ''} ${isComingSoon ? 'disabled' : ''}`}
+                          onClick={() => !isComingSoon && handleSizeSelect(short.id, size)}
+                          disabled={isComingSoon}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Coming Soon / Join Waitlist */}
+                    {isComingSoon ? (
+                      <button className="btn-coming-soon" disabled>
+                        <Clock size={16} /> Coming Soon
+                      </button>
+                    ) : (
+                      <button 
+                        className="btn-add-to-cart waitlist-btn"
+                        onClick={() => handleAddToCart(short, false)}
+                      >
+                        <Lock size={16} /> Join Waitlist
+                      </button>
+                    )}
+
+                    {/* Bundle nudge */}
+                    <p className="bundle-upsell">
+                      Complete the set — <span className="bundle-link">Bundle for $69</span>
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ROW 3: Women's Performance Shorts */}
+        <div className="product-row shorts-row">
+          <h3 className="row-title">Women's Performance Shorts</h3>
+          <p className="row-subtitle">Higher rise with a fitted silhouette — built for movement</p>
+          
+          <div className="product-grid shorts-grid">
+            {womensShorts.map((short) => {
+              const selectedSize = selectedSizes[short.id] || 'M';
+              const isAdded = addedToCart[short.id];
+              const isComingSoon = short.status === 'coming_soon';
+              const isBlackShort = short.color === 'Black';
+              
+              return (
+                <div key={short.id} className={`product-card ${isComingSoon ? 'coming-soon' : ''} ${isBlackShort ? 'black-product' : ''}`}>
+                  {/* Wishlist heart button - only for available products */}
+                  {!isComingSoon && (
+                    <button 
+                      className={`wishlist-heart ${isInWishlist(short.id, short.variant) ? 'active' : ''}`}
+                      onClick={(e) => handleWishlistToggle(e, short)}
+                      title={isInWishlist(short.id, short.variant) ? 'Remove from wishlist' : 'Add to wishlist'}
+                    >
+                      <Heart size={18} fill={isInWishlist(short.id, short.variant) ? 'currentColor' : 'none'} />
+                    </button>
+                  )}
+                  
+                  <div 
+                    className={`product-image-wrapper ${!isComingSoon ? 'clickable' : ''}`}
+                    onClick={() => !isComingSoon && handleProductClick(short)}
+                  >
+                    {short.image ? (
+                      <SanitizedImage 
+                        src={short.image} 
+                        alt={`${short.name} - ${short.variant}`}
+                        className="product-image"
+                      />
+                    ) : (
+                      <div className="product-placeholder">
+                        <div className="placeholder-content">
+                          <Clock size={32} />
+                          <span>Coming Soon</span>
+                        </div>
+                      </div>
+                    )}
+                    {!isComingSoon && <div className="view-details-hint">Click to view</div>}
+                  </div>
+                  
+                  <div className="product-info">
+                    <div className="product-variant">{short.variant}</div>
+                    <div className="product-price-row">
+                      <span className="product-price">${short.price}</span>
                     </div>
                     
                     {/* Size Selector */}
