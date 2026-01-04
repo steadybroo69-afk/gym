@@ -148,7 +148,17 @@ const ProductDetail = () => {
                 <label className="product-detail-label">
                   Size: {selectedSize && <span className="selected-value">{selectedSize}</span>}
                 </label>
-                <button className="size-guide-link" onClick={() => navigate('/size-guide')}>
+                <button 
+                  className="size-guide-link" 
+                  onClick={() => {
+                    // Navigate to size guide with the correct tab
+                    let tab = 'tshirt';
+                    if (product.type === 'shorts') {
+                      tab = product.gender === 'womens' ? 'womens-shorts' : 'mens-shorts';
+                    }
+                    navigate(`/size-guide?tab=${tab}`);
+                  }}
+                >
                   Size Guide
                 </button>
               </div>
