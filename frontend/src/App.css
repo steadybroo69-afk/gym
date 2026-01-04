@@ -10472,3 +10472,34 @@ body {
 .link-btn:hover {
   opacity: 0.8;
 }
+
+/* Gender Toggle for Shorts */
+.gender-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.gender-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gender-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.gender-btn.active {
+  background: rgba(0, 217, 255, 0.15);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
