@@ -6404,6 +6404,63 @@ body {
   opacity: 1;
 }
 
+/* View details hint with inline gender toggle for shorts */
+.view-details-hint-with-toggle {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.view-details-hint-with-toggle span {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.product-image-wrapper.clickable:hover .view-details-hint-with-toggle {
+  opacity: 1;
+}
+
+.gender-toggle-inline {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.gender-btn-inline {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gender-btn-inline:hover {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+}
+
+.gender-btn-inline.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
 .product-image-wrapper {
   position: relative;
 }
