@@ -95,8 +95,10 @@ const AppRouter = () => {
   }
   
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<><Header /><Products /><Footer /></>} />
         <Route path="/products/:id" element={<><Header /><ProductDetail /><Footer /></>} />
