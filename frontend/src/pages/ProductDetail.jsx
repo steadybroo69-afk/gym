@@ -154,7 +154,7 @@ const ProductDetail = () => {
                     // Navigate to size guide with the correct tab
                     let tab = 'tshirt';
                     if (product.type === 'shorts') {
-                      tab = product.gender === 'womens' ? 'womens-shorts' : 'mens-shorts';
+                      tab = product.gender === 'womens' ? 'shorts-womens' : 'shorts-mens';
                     }
                     navigate(`/size-guide?tab=${tab}`);
                   }}
