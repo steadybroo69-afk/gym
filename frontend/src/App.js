@@ -122,6 +122,7 @@ const AppRouter = () => {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </Suspense>
+    </>
   );
 };
 
