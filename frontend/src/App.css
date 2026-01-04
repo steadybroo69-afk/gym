@@ -6136,11 +6136,10 @@ body {
   background: rgba(255, 235, 59, 0.35);
 }
 
-/* Selected state - blue outline and slightly bigger */
+/* Selected state - blue outline */
 .modal-gender-btn.active {
   border-color: #00d9ff;
   box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
-  transform: scale(1.15);
 }
 
 .size-guide-btn {
