@@ -78,15 +78,14 @@ export const products = [
     stock: { XS: 6, S: 14, M: 18, L: 22, XL: 16 },
     featured: true
   },
-  // Performance Shorts - Men's
+  // Performance Shorts (with Men's/Women's option)
   {
     id: 5,
-    name: "Men's Performance Shorts",
+    name: 'Performance Shorts',
     category: 'shorts',
     type: 'shorts',
-    gender: 'mens',
     variant: 'Black / Cyan',
-    description: "Men's performance shorts engineered for gymnastics training. Designed to pair with Performance T-Shirts.",
+    description: 'Performance shorts engineered for gymnastics training. Designed to pair with Performance T-Shirts.',
     price: 55,
     color: 'Black',
     logo: 'Cyan',
@@ -94,19 +93,20 @@ export const products = [
       'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/c4dg91vy_5.png',
       'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png'
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    mensSizes: ['S', 'M', 'L', 'XL'],
+    womensSizes: ['XS', 'S', 'M', 'L'],
+    sizes: ['S', 'M', 'L', 'XL'], // Default to men's
     inStock: true,
-    stock: { S: 8, M: 12, L: 15, XL: 10 },
+    stock: { XS: 6, S: 10, M: 14, L: 18, XL: 12 },
     featured: true
   },
   {
     id: 6,
-    name: "Men's Performance Shorts",
+    name: 'Performance Shorts',
     category: 'shorts',
     type: 'shorts',
-    gender: 'mens',
     variant: 'Black / Silver',
-    description: "Men's performance shorts engineered for gymnastics training. Designed to pair with Performance T-Shirts.",
+    description: 'Performance shorts engineered for gymnastics training. Designed to pair with Performance T-Shirts.',
     price: 55,
     color: 'Black',
     logo: 'Silver',
@@ -114,50 +114,11 @@ export const products = [
       'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/lauo11fr_6.png',
       'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png'
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    mensSizes: ['S', 'M', 'L', 'XL'],
+    womensSizes: ['XS', 'S', 'M', 'L'],
+    sizes: ['S', 'M', 'L', 'XL'], // Default to men's
     inStock: true,
-    stock: { S: 10, M: 14, L: 18, XL: 12 },
-    featured: true
-  },
-  // Performance Shorts - Women's
-  {
-    id: 7,
-    name: "Women's Performance Shorts",
-    category: 'shorts',
-    type: 'shorts',
-    gender: 'womens',
-    variant: 'Black / Cyan',
-    description: "Women's performance shorts engineered for gymnastics training. Higher rise with a fitted silhouette.",
-    price: 55,
-    color: 'Black',
-    logo: 'Cyan',
-    images: [
-      'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/c4dg91vy_5.png',
-      'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png'
-    ],
-    sizes: ['XS', 'S', 'M', 'L'],
-    inStock: true,
-    stock: { XS: 6, S: 10, M: 12, L: 8 },
-    featured: true
-  },
-  {
-    id: 8,
-    name: "Women's Performance Shorts",
-    category: 'shorts',
-    type: 'shorts',
-    gender: 'womens',
-    variant: 'Black / Silver',
-    description: "Women's performance shorts engineered for gymnastics training. Higher rise with a fitted silhouette.",
-    price: 55,
-    color: 'Black',
-    logo: 'Silver',
-    images: [
-      'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/lauo11fr_6.png',
-      'https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png'
-    ],
-    sizes: ['XS', 'S', 'M', 'L'],
-    inStock: true,
-    stock: { XS: 5, S: 8, M: 10, L: 6 },
+    stock: { XS: 5, S: 8, M: 12, L: 15, XL: 10 },
     featured: true
   }
 ];
