@@ -260,25 +260,7 @@ const ProductCategories = () => {
                         </div>
                       </div>
                     )}
-                    {!isComingSoon && (
-                      <div className="view-details-hint-with-toggle">
-                        <span>Click to view</span>
-                        <div className="gender-toggle-inline" onClick={(e) => e.stopPropagation()}>
-                          <button
-                            className={`gender-btn-inline ${gender === 'mens' ? 'active' : ''}`}
-                            onClick={(e) => { e.stopPropagation(); handleGenderSelect(short.id, 'mens'); }}
-                          >
-                            Men's
-                          </button>
-                          <button
-                            className={`gender-btn-inline ${gender === 'womens' ? 'active' : ''}`}
-                            onClick={(e) => { e.stopPropagation(); handleGenderSelect(short.id, 'womens'); }}
-                          >
-                            Women's
-                          </button>
-                        </div>
-                      </div>
-                    )}
+                    {!isComingSoon && <div className="view-details-hint">Click to view</div>}
                   </div>
                   
                   <div className="product-info">
