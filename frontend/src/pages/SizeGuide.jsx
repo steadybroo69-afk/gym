@@ -239,12 +239,12 @@ const SizeGuide = () => {
                   />
                 </div>
                 
-                <div className="measurement-legend">
+                <div className="measurement-legend measurement-legend-even">
                   <div className="legend-item">
                     <span className="legend-marker" style={{background: '#00d9ff'}}>A</span>
                     <div>
                       <strong>Chest Width</strong>
-                      <p>Measure across chest from armpit to armpit</p>
+                      <p>Measure across chest flat, from armpit to armpit</p>
                     </div>
                   </div>
                   <div className="legend-item">
@@ -258,7 +258,7 @@ const SizeGuide = () => {
                     <span className="legend-marker" style={{background: '#ffd93d'}}>C</span>
                     <div>
                       <strong>Body Length</strong>
-                      <p>From collar seam to bottom hem</p>
+                      <p>From highest point of shoulder (collar seam) to bottom hem</p>
                     </div>
                   </div>
                   <div className="legend-item">
@@ -367,7 +367,7 @@ const SizeGuide = () => {
                   />
                 </div>
                 
-                <div className="measurement-legend">
+                <div className="measurement-legend measurement-legend-even">
                   <div className="legend-item">
                     <span className="legend-marker" style={{background: '#00d9ff'}}>A</span>
                     <div>
@@ -495,7 +495,7 @@ const SizeGuide = () => {
                   />
                 </div>
                 
-                <div className="measurement-legend">
+                <div className="measurement-legend measurement-legend-even">
                   <div className="legend-item">
                     <span className="legend-marker" style={{background: '#00d9ff'}}>A</span>
                     <div>
