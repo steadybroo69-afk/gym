@@ -91,7 +91,7 @@ const EmailPopup = ({ isOpen: externalIsOpen, onClose: externalOnClose }) => {
       <div className="popup-overlay" onClick={handleClose} />
 
       {/* Popup */}
-      <div className="popup-container">
+      <div className="popup-container no-animation">
         <button className="popup-close" onClick={handleClose} aria-label="Close">
           <X size={20} />
         </button>
