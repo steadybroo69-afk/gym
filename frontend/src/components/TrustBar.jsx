@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, Shield, Award } from 'lucide-react';
+import { Truck, RotateCcw, Shield, Award } from 'lucide-react';
 
 const TrustBar = () => {
   return (
@@ -8,6 +8,10 @@ const TrustBar = () => {
         <div className="trust-item">
           <Truck size={20} />
           <span>Free Shipping $100+ USD</span>
+        </div>
+        <div className="trust-item">
+          <RotateCcw size={20} />
+          <span>30-Day Returns</span>
         </div>
         <div className="trust-item">
           <Shield size={20} />
