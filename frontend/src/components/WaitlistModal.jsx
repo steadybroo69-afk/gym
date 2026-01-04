@@ -158,29 +158,6 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
             </div>
 
             <form onSubmit={handleSubmit} className="waitlist-form">
-              {/* Gender toggle for shorts */}
-              {isShorts && (
-                <div className="waitlist-gender-section">
-                  <label>Select Fit</label>
-                  <div className="waitlist-gender-toggle">
-                    <button
-                      type="button"
-                      className={`waitlist-gender-btn mens ${selectedGender === 'mens' ? 'active' : ''}`}
-                      onClick={() => setSelectedGender('mens')}
-                    >
-                      Men's
-                    </button>
-                    <button
-                      type="button"
-                      className={`waitlist-gender-btn womens ${selectedGender === 'womens' ? 'active' : ''}`}
-                      onClick={() => setSelectedGender('womens')}
-                    >
-                      Women's
-                    </button>
-                  </div>
-                </div>
-              )}
-
               <div className="waitlist-size-section">
                 <label>Select Size & Quantity</label>
                 
@@ -193,9 +170,9 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
                           onChange={(e) => updateSize(index, e.target.value)}
                           className="size-select"
                         >
-                          {sizes.map(size => (
+                          {sizeOptions.map(size => (
                             <option key={size} value={size}>
-                              {size} {isShorts && `(${selectedGender === 'mens' ? "Men's" : "Women's"})`}
+                              {size}
                             </option>
                           ))}
                         </select>
