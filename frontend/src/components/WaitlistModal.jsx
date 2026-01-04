@@ -8,6 +8,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const WaitlistModal = ({ isOpen, onClose, product }) => {
   const [email, setEmail] = useState('');
+  const [selectedGender, setSelectedGender] = useState('mens');
   const [sizeSelections, setSizeSelections] = useState([{ size: 'M', quantity: 1 }]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -15,11 +16,28 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
   const [result, setResult] = useState(null);
   const [spotsRemaining, setSpotsRemaining] = useState(null);
 
+  // Check if this is a shorts product
+  const isShorts = product?.category === 'Shorts';
+
+  // Get sizes based on gender for shorts
+  const getSizes = () => {
+    if (!product) return ['XS', 'S', 'M', 'L', 'XL'];
+    if (isShorts) {
+      return selectedGender === 'mens' 
+        ? (product.mensSizes || ['S', 'M', 'L', 'XL'])
+        : (product.womensSizes || ['XS', 'S', 'M', 'L']);
+    }
+    return product.sizes || ['XS', 'S', 'M', 'L'];
+  };
+
+  const sizes = getSizes();
+
   useEffect(() => {
     if (isOpen) {
       fetchSpotsRemaining();
       // Reset selections when modal opens
-      setSizeSelections([{ size: 'M', quantity: 1 }]);
+      const defaultSize = isShorts ? (selectedGender === 'mens' ? 'M' : 'S') : 'M';
+      setSizeSelections([{ size: defaultSize, quantity: 1 }]);
       setSuccess(false);
       setError('');
       setEmail('');
@@ -31,6 +49,14 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
     };
   }, [isOpen]);
 
+  // Reset size selections when gender changes
+  useEffect(() => {
+    if (isShorts && isOpen) {
+      const defaultSize = selectedGender === 'mens' ? 'M' : 'S';
+      setSizeSelections([{ size: defaultSize, quantity: 1 }]);
+    }
+  }, [selectedGender, isShorts, isOpen]);
+
   const fetchSpotsRemaining = async () => {
     try {
       const response = await fetch(`${API_URL}/api/waitlist/status`);
@@ -40,8 +66,6 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
       console.error('Failed to fetch spots:', err);
     }
   };
-
-  const sizes = product?.sizes || ['XS', 'S', 'M', 'L', 'XL'];
 
   const addSizeSelection = () => {
     // Find a size that hasn't been selected yet, or default to first available
