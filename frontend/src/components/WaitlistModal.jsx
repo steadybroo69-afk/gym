@@ -105,6 +105,7 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
     setError('');
 
     try {
+      const genderLabel = isShorts ? (selectedGender === 'mens' ? "Men's" : "Women's") : null;
       const response = await fetch(`${API_URL}/api/waitlist/join`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -113,6 +114,7 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
           product_id: product.id,
           product_name: product.name,
           variant: product.variant,
+          gender: genderLabel,
           size: sizeSelections.map(s => `${s.size} x${s.quantity}`).join(', '),
           size_selections: sizeSelections
         })
