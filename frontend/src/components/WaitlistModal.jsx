@@ -124,13 +124,14 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
               <div className="waitlist-badge">🔥 LIMITED DROP</div>
               <h2>Join the Waitlist</h2>
               <p>First drop SOLD OUT. Secure your spot for Feb 2.</p>
-              {spotsRemaining !== null && (
-                <div className="spots-remaining">
-                  <Lock size={14} />
-                  Only <strong>{spotsRemaining}</strong> spots left
-                </div>
-              )}
             </div>
+
+            {spotsRemaining !== null && (
+              <div className="waitlist-spots-banner">
+                <Lock size={16} />
+                <span>Only <strong>{spotsRemaining}</strong> spots left</span>
+              </div>
+            )}
 
             <div className="waitlist-product-preview">
               <img src={product?.image} alt={product?.name} />
