@@ -205,7 +205,9 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
                           className="size-select"
                         >
                           {sizes.map(size => (
-                            <option key={size} value={size}>{size}</option>
+                            <option key={size} value={size}>
+                              {size} {isShorts && `(${selectedGender === 'mens' ? "Men's" : "Women's"})`}
+                            </option>
                           ))}
                         </select>
                       </div>
