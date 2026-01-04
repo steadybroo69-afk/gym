@@ -8,8 +8,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const WaitlistModal = ({ isOpen, onClose, product }) => {
   const [email, setEmail] = useState('');
-  const [selectedGender, setSelectedGender] = useState('mens');
-  const [sizeSelections, setSizeSelections] = useState([{ size: 'M', quantity: 1 }]);
+  const [sizeSelections, setSizeSelections] = useState([{ size: "M (Men's)", quantity: 1 }]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -19,24 +18,24 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
   // Check if this is a shorts product
   const isShorts = product?.category === 'Shorts';
 
-  // Get sizes based on gender for shorts
-  const getSizes = () => {
-    if (!product) return ['XS', 'S', 'M', 'L', 'XL'];
+  // Get all size options
+  const getSizeOptions = () => {
+    if (!product) return ['XS', 'S', 'M', 'L'];
     if (isShorts) {
-      return selectedGender === 'mens' 
-        ? (product.mensSizes || ['S', 'M', 'L', 'XL'])
-        : (product.womensSizes || ['XS', 'S', 'M', 'L']);
+      const mensSizes = (product.mensSizes || ['S', 'M', 'L', 'XL']).map(s => `${s} (Men's)`);
+      const womensSizes = (product.womensSizes || ['XS', 'S', 'M', 'L']).map(s => `${s} (Women's)`);
+      return [...mensSizes, ...womensSizes];
     }
     return product.sizes || ['XS', 'S', 'M', 'L'];
   };
 
-  const sizes = getSizes();
+  const sizeOptions = getSizeOptions();
 
   useEffect(() => {
     if (isOpen) {
       fetchSpotsRemaining();
       // Reset selections when modal opens
-      const defaultSize = isShorts ? (selectedGender === 'mens' ? 'M' : 'S') : 'M';
+      const defaultSize = isShorts ? "M (Men's)" : 'M';
       setSizeSelections([{ size: defaultSize, quantity: 1 }]);
       setSuccess(false);
       setError('');
@@ -47,15 +46,7 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen]);
-
-  // Reset size selections when gender changes
-  useEffect(() => {
-    if (isShorts && isOpen) {
-      const defaultSize = selectedGender === 'mens' ? 'M' : 'S';
-      setSizeSelections([{ size: defaultSize, quantity: 1 }]);
-    }
-  }, [selectedGender, isShorts, isOpen]);
+  }, [isOpen, isShorts]);
 
   const fetchSpotsRemaining = async () => {
     try {
@@ -70,7 +61,7 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
   const addSizeSelection = () => {
     // Find a size that hasn't been selected yet, or default to first available
     const selectedSizes = sizeSelections.map(s => s.size);
-    const availableSize = sizes.find(s => !selectedSizes.includes(s)) || sizes[0];
+    const availableSize = sizeOptions.find(s => !selectedSizes.includes(s)) || sizeOptions[0];
     setSizeSelections([...sizeSelections, { size: availableSize, quantity: 1 }]);
   };
 
