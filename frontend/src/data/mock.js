@@ -89,11 +89,11 @@ export const shirts = [
   }
 ];
 
-// Shorts variants - Men's
-export const mensShorts = [
+// Shorts variants (2 styles with Men's/Women's option)
+export const shorts = [
   {
     id: 5,
-    name: "Men's Performance Shorts",
+    name: "Performance Shorts",
     category: "Shorts",
     variant: "Black / Cyan",
     color: "Black",
@@ -102,13 +102,14 @@ export const mensShorts = [
     image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/c4dg91vy_5.png",
     backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
     price: 55,
+    mensSizes: ["S", "M", "L", "XL"],
+    womensSizes: ["XS", "S", "M", "L"],
     sizes: ["S", "M", "L", "XL"],
-    gender: "mens",
     status: "available"
   },
   {
     id: 6,
-    name: "Men's Performance Shorts",
+    name: "Performance Shorts",
     category: "Shorts",
     variant: "Black / Silver",
     color: "Black",
@@ -117,48 +118,16 @@ export const mensShorts = [
     image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/lauo11fr_6.png",
     backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
     price: 55,
+    mensSizes: ["S", "M", "L", "XL"],
+    womensSizes: ["XS", "S", "M", "L"],
     sizes: ["S", "M", "L", "XL"],
-    gender: "mens",
     status: "available"
   }
 ];
 
-// Shorts variants - Women's
-export const womensShorts = [
-  {
-    id: 7,
-    name: "Women's Performance Shorts",
-    category: "Shorts",
-    variant: "Black / Cyan",
-    color: "Black",
-    logoColor: "Cyan",
-    hex: "#00D4FF",
-    image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/c4dg91vy_5.png",
-    backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
-    price: 55,
-    sizes: ["XS", "S", "M", "L"],
-    gender: "womens",
-    status: "available"
-  },
-  {
-    id: 8,
-    name: "Women's Performance Shorts",
-    category: "Shorts",
-    variant: "Black / Silver",
-    color: "Black",
-    logoColor: "Silver",
-    hex: "#C0C0C0",
-    image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/lauo11fr_6.png",
-    backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
-    price: 55,
-    sizes: ["XS", "S", "M", "L"],
-    gender: "womens",
-    status: "available"
-  }
-];
-
-// Combined shorts for backwards compatibility
-export const shorts = [...mensShorts, ...womensShorts];
+// For backwards compatibility
+export const mensShorts = shorts;
+export const womensShorts = shorts;
 
 // Combined products array for compatibility
 export const products = [...shirts, ...shorts];
