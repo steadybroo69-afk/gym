@@ -6096,6 +6096,37 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Gender toggle in modal for shorts */
+.modal-gender-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.modal-gender-btn {
+  flex: 1;
+  padding: 12px 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-gender-btn:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-secondary);
+}
+
+.modal-gender-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
 .size-guide-btn {
   background: transparent;
   border: 1px solid rgba(0, 217, 255, 0.3);
