@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { shirts, shorts } from '../data/mock';
+import { shirts, mensShorts, womensShorts } from '../data/mock';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { ShoppingBag, Clock, Star, Flame, Heart, Lock } from 'lucide-react';
