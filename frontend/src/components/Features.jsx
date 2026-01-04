@@ -1,12 +1,12 @@
 import React from 'react';
 import { features } from '../data/mock';
-import { Activity, Minimize2, Target, Globe } from 'lucide-react';
+import { Activity, Minimize2, Target, Crosshair } from 'lucide-react';
 
 const iconMap = {
   'activity': Activity,
   'minimize-2': Minimize2,
   'target': Target,
-  'globe': Globe
+  'globe': Crosshair
 };
 
 const Features = () => {
@@ -16,6 +16,7 @@ const Features = () => {
         <div className="section-header">
           <h2 className="section-title">Why RAZE</h2>
           <p className="section-subtitle">Designed with purpose. Built for performance.</p>
+          <p className="section-subtitle-secondary">Designed by gymnasts. Tested in real training environments.</p>
         </div>
 
         <div className="features-grid">
@@ -32,6 +33,8 @@ const Features = () => {
             );
           })}
         </div>
+        
+        <p className="features-tagline">Built for training. Refined for everyday wear.</p>
       </div>
     </section>
   );
