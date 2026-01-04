@@ -260,29 +260,31 @@ const ProductCategories = () => {
                         </div>
                       </div>
                     )}
-                    {!isComingSoon && <div className="view-details-hint">Click to view</div>}
+                    {!isComingSoon && (
+                      <div className="view-details-hint-with-toggle">
+                        <span>Click to view</span>
+                        <div className="gender-toggle-inline" onClick={(e) => e.stopPropagation()}>
+                          <button
+                            className={`gender-btn-inline ${gender === 'mens' ? 'active' : ''}`}
+                            onClick={(e) => { e.stopPropagation(); handleGenderSelect(short.id, 'mens'); }}
+                          >
+                            Men's
+                          </button>
+                          <button
+                            className={`gender-btn-inline ${gender === 'womens' ? 'active' : ''}`}
+                            onClick={(e) => { e.stopPropagation(); handleGenderSelect(short.id, 'womens'); }}
+                          >
+                            Women's
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="product-info">
                     <div className="product-variant">{short.variant}</div>
                     <div className="product-price-row">
                       <span className="product-price">${short.price}</span>
-                    </div>
-                    
-                    {/* Gender Toggle */}
-                    <div className="gender-toggle">
-                      <button
-                        className={`gender-btn ${gender === 'mens' ? 'active' : ''}`}
-                        onClick={() => handleGenderSelect(short.id, 'mens')}
-                      >
-                        Men's
-                      </button>
-                      <button
-                        className={`gender-btn ${gender === 'womens' ? 'active' : ''}`}
-                        onClick={() => handleGenderSelect(short.id, 'womens')}
-                      >
-                        Women's
-                      </button>
                     </div>
                     
                     {/* Size Selector */}
