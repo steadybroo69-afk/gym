@@ -8655,6 +8655,65 @@ body {
   border-radius: 20px;
 }
 
+/* Spots banner - matches hero banner style */
+.waitlist-spots-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(90deg, rgba(0, 217, 255, 0.08) 0%, rgba(168, 85, 247, 0.06) 50%, rgba(0, 217, 255, 0.08) 100%);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.waitlist-spots-banner strong {
+  color: var(--brand-primary);
+  font-size: 15px;
+}
+
+.waitlist-spots-banner svg {
+  color: var(--brand-primary);
+}
+
+/* Submit button - make it stand out */
+.waitlist-submit-btn {
+  width: 100%;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d9ff 0%, #00b8d9 100%);
+  border: none;
+  color: #000;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 20px rgba(0, 217, 255, 0.4);
+}
+
+.waitlist-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(0, 217, 255, 0.5);
+  background: linear-gradient(135deg, #00e5ff 0%, #00c8e8 100%);
+}
+
+.waitlist-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .waitlist-product-preview {
   display: flex;
   align-items: center;
