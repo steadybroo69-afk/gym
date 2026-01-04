@@ -6106,25 +6106,40 @@ body {
 .modal-gender-btn {
   flex: 1;
   padding: 12px 0;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  color: #fff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  border: 2px solid transparent;
 }
 
-.modal-gender-btn:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.22);
+/* Men's button - green */
+.modal-gender-btn:first-child {
+  background: rgba(76, 175, 80, 0.25);
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.5);
 }
 
+.modal-gender-btn:first-child:hover {
+  background: rgba(76, 175, 80, 0.35);
+}
+
+/* Women's button - pink */
+.modal-gender-btn:last-child {
+  background: rgba(233, 30, 99, 0.25);
+  color: #E91E63;
+  border-color: rgba(233, 30, 99, 0.5);
+}
+
+.modal-gender-btn:last-child:hover {
+  background: rgba(233, 30, 99, 0.35);
+}
+
+/* Selected state - blue outline */
 .modal-gender-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #000;
+  border-color: #00d9ff;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
 }
 
 .size-guide-btn {
