@@ -9104,9 +9104,13 @@ body {
   flex: 1;
   display: flex;
   gap: 20px;
-  align-items: center;
+  align-items: flex-start;
   padding: 22px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.measurement-legend-even .legend-item .legend-marker {
+  margin-top: 2px;
 }
 
 .measurement-legend-even .legend-item:last-child {
