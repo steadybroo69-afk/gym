@@ -11,8 +11,30 @@ const WAITLIST_MODE = true;
 const ProductModal = ({ isOpen, onClose, product }) => {
   const [showBack, setShowBack] = useState(false);
   const [selectedSize, setSelectedSize] = useState('M');
+  const [selectedGender, setSelectedGender] = useState('mens');
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Determine if this is a shorts product
+  const isShorts = product?.category === 'Shorts';
+
+  // Get sizes based on gender for shorts
+  const getSizes = () => {
+    if (!product) return ['XS', 'S', 'M', 'L'];
+    if (isShorts) {
+      return selectedGender === 'mens' 
+        ? (product.mensSizes || ['S', 'M', 'L', 'XL'])
+        : (product.womensSizes || ['XS', 'S', 'M', 'L']);
+    }
+    return product.sizes || ['XS', 'S', 'M', 'L'];
+  };
+
+  // Reset size when gender changes
+  useEffect(() => {
+    if (isShorts) {
+      setSelectedSize(selectedGender === 'mens' ? 'M' : 'S');
+    }
+  }, [selectedGender, isShorts]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -35,6 +57,14 @@ const ProductModal = ({ isOpen, onClose, product }) => {
 
   const toggleView = () => {
     setShowBack(!showBack);
+  };
+
+  // Get the correct size guide tab based on product and gender
+  const getSizeGuideTab = () => {
+    if (isShorts) {
+      return selectedGender === 'mens' ? 'shorts-mens' : 'shorts-womens';
+    }
+    return 'tshirt';
   };
 
   // Render modal in a portal at body level
