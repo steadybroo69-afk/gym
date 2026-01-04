@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { shirts, mensShorts, womensShorts } from '../data/mock';
+import { shirts, shorts } from '../data/mock';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { ShoppingBag, Clock, Star, Flame, Heart, Lock } from 'lucide-react';
@@ -17,6 +17,7 @@ const WAITLIST_MODE = true;
 
 const ProductCategories = () => {
   const [selectedSizes, setSelectedSizes] = useState({});
+  const [selectedGender, setSelectedGender] = useState({}); // Track Men's/Women's selection for shorts
   const [addedToCart, setAddedToCart] = useState({});
   const [upsellModal, setUpsellModal] = useState({ isOpen: false, product: null });
   const [productModal, setProductModal] = useState({ isOpen: false, product: null });
@@ -38,6 +39,18 @@ const ProductCategories = () => {
     setSelectedSizes(prev => ({
       ...prev,
       [productId]: size
+    }));
+  };
+
+  const handleGenderSelect = (productId, gender) => {
+    setSelectedGender(prev => ({
+      ...prev,
+      [productId]: gender
+    }));
+    // Reset size selection when gender changes
+    setSelectedSizes(prev => ({
+      ...prev,
+      [productId]: gender === 'mens' ? 'M' : 'S'
     }));
   };
 
