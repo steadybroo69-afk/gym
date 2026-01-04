@@ -1302,11 +1302,25 @@ body {
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
+    transform: translate(-50%, -45%);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* No animation popup - appears directly at center */
+.popup-container.no-animation {
+  animation: fadeInOnly 0.2s ease;
+}
+
+@keyframes fadeInOnly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
