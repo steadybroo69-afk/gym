@@ -8947,6 +8947,23 @@ body {
   margin-top: 12px;
 }
 
+.waitlist-note {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.waitlist-note p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.waitlist-note p:first-child {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
 /* Success State */
 .waitlist-success {
   text-align: center;
