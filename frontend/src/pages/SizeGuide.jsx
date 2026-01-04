@@ -14,7 +14,7 @@ const SizeGuide = () => {
     // Check for tab parameter in URL
     const tabParam = searchParams.get('tab');
     if (tabParam) {
-      if (tabParam === 'tshirt' || tabParam === 'mens-shorts' || tabParam === 'womens-shorts') {
+      if (tabParam === 'tshirt' || tabParam === 'shorts-mens' || tabParam === 'shorts-womens') {
         setActiveTab(tabParam);
       }
     }
