@@ -8772,6 +8772,63 @@ body {
   margin-bottom: 20px;
 }
 
+/* Gender toggle in waitlist modal */
+.waitlist-gender-section {
+  margin-bottom: 20px;
+}
+
+.waitlist-gender-section > label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.waitlist-gender-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+.waitlist-gender-btn {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+/* Men's button - bright green */
+.waitlist-gender-btn.mens {
+  background: rgba(0, 230, 118, 0.2);
+  color: #00E676;
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.waitlist-gender-btn.mens:hover {
+  background: rgba(0, 230, 118, 0.3);
+}
+
+/* Women's button - yellow */
+.waitlist-gender-btn.womens {
+  background: rgba(255, 235, 59, 0.2);
+  color: #FFEB3B;
+  border-color: rgba(255, 235, 59, 0.4);
+}
+
+.waitlist-gender-btn.womens:hover {
+  background: rgba(255, 235, 59, 0.3);
+}
+
+/* Selected state - blue outline */
+.waitlist-gender-btn.active {
+  border-color: #00d9ff;
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.4);
+}
+
 .waitlist-size-section > label {
   display: block;
   font-size: 13px;
