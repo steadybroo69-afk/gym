@@ -148,25 +148,25 @@ export const features = [
   {
     id: 1,
     title: "Performance Driven",
-    description: "Technical fabrics designed for high-intensity training. Light, breathable, and built to move with you through every rep.",
+    description: "Technical fabrics selected for heat management, stretch retention, and repeated high-intensity use.",
     icon: "activity"
   },
   {
     id: 2,
     title: "Minimalist Design",
-    description: "No loud graphics. No unnecessary details. Just clean silhouettes and subtle branding that works in the gym and beyond.",
+    description: "No loud graphics. No distractions. Every detail serves movement, focus, and longevity.",
     icon: "minimize-2"
   },
   {
     id: 3,
     title: "Gymnastics Heritage",
-    description: "Born from gymnastics—a discipline that demands control, precision, and relentless repetition. Built by athletes, for athletes.",
+    description: "Born from gymnastics — a discipline where precision, control, and durability aren't optional.",
     icon: "target"
   },
   {
     id: 4,
-    title: "Worldwide Shipping",
-    description: "Quality training wear delivered globally. Built for athletes everywhere who value discipline over distraction.",
+    title: "Purpose-Built Fit",
+    description: "Engineered patterns for overhead movement, compression, and control — not lifestyle silhouettes.",
     icon: "globe"
   }
 ];
