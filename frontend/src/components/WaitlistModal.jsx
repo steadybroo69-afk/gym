@@ -226,13 +226,15 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
                 {loading ? (
                   <><Loader2 size={18} className="animate-spin" /> Joining...</>
                 ) : (
-                  <><Lock size={18} /> Secure My Spot ({getTotalQuantity()} item{getTotalQuantity() > 1 ? 's' : ''})</>
+                  <><Lock size={18} /> Secure My Spot</>
                 )}
               </Button>
 
-              <p className="waitlist-note">
-                No payment required. We'll email you when your size drops.
-              </p>
+              <div className="waitlist-note">
+                <p>No payment required today.</p>
+                <p>Your selected item(s) and size(s) are reserved for you.</p>
+                <p>We'll notify you as Feb 2 approaches to complete checkout.</p>
+              </div>
             </form>
           </>
         ) : (
