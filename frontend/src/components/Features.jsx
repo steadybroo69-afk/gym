@@ -15,8 +15,8 @@ const Features = () => {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Why RAZE</h2>
-          <p className="section-subtitle">Designed with purpose. Built for performance.</p>
-          <p className="section-subtitle-secondary">Designed by gymnasts. Tested in real training environments.</p>
+          <p className="section-subtitle">Designed with purpose by gymnasts. Built for performance.</p>
+          <p className="section-subtitle-secondary">Tested in real training environments.</p>
         </div>
 
         <div className="features-grid">
