@@ -6,7 +6,7 @@ const AnnouncementBar = () => {
     <div className="announcement-bar">
       <div className="announcement-content">
         <Shield size={14} />
-        <span>100% Satisfaction Guarantee • Premium Quality • All prices in USD</span>
+        <span>30-Day Returns • 100% Satisfaction Guarantee • All prices in USD</span>
       </div>
     </div>
   );
