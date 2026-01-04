@@ -9091,6 +9091,28 @@ body {
   padding: 20px 0;
 }
 
+/* Even spacing for measurement legend items */
+.measurement-legend-even {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  padding: 10px 0;
+}
+
+.measurement-legend-even .legend-item {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.measurement-legend-even .legend-item:last-child {
+  border-bottom: none;
+}
+
 .legend-item {
   display: flex;
   gap: 20px;
