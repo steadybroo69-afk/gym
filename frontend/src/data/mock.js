@@ -159,10 +159,6 @@ export const womensShorts = [
 
 // Combined shorts for backwards compatibility
 export const shorts = [...mensShorts, ...womensShorts];
-    gender: "unisex",
-    status: "available"
-  }
-];
 
 // Combined products array for compatibility
 export const products = [...shirts, ...shorts];
