@@ -89,11 +89,45 @@ export const shirts = [
   }
 ];
 
-// Shorts variants (2 styles)
-export const shorts = [
+// Shorts variants - Men's
+export const mensShorts = [
   {
     id: 5,
-    name: "Performance Shorts",
+    name: "Men's Performance Shorts",
+    category: "Shorts",
+    variant: "Black / Cyan",
+    color: "Black",
+    logoColor: "Cyan",
+    hex: "#00D4FF",
+    image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/c4dg91vy_5.png",
+    backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
+    price: 55,
+    sizes: ["S", "M", "L", "XL"],
+    gender: "mens",
+    status: "available"
+  },
+  {
+    id: 6,
+    name: "Men's Performance Shorts",
+    category: "Shorts",
+    variant: "Black / Silver",
+    color: "Black",
+    logoColor: "Silver",
+    hex: "#C0C0C0",
+    image: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/lauo11fr_6.png",
+    backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
+    price: 55,
+    sizes: ["S", "M", "L", "XL"],
+    gender: "mens",
+    status: "available"
+  }
+];
+
+// Shorts variants - Women's
+export const womensShorts = [
+  {
+    id: 7,
+    name: "Women's Performance Shorts",
     category: "Shorts",
     variant: "Black / Cyan",
     color: "Black",
@@ -103,12 +137,12 @@ export const shorts = [
     backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
     price: 55,
     sizes: ["XS", "S", "M", "L"],
-    gender: "unisex",
+    gender: "womens",
     status: "available"
   },
   {
-    id: 6,
-    name: "Performance Shorts",
+    id: 8,
+    name: "Women's Performance Shorts",
     category: "Shorts",
     variant: "Black / Silver",
     color: "Black",
@@ -118,6 +152,13 @@ export const shorts = [
     backImage: "https://customer-assets.emergentagent.com/job_c568bc3b-5c5d-4cd8-bacb-54177a8430c8/artifacts/0zp1wq7a_1.png",
     price: 55,
     sizes: ["XS", "S", "M", "L"],
+    gender: "womens",
+    status: "available"
+  }
+];
+
+// Combined shorts for backwards compatibility
+export const shorts = [...mensShorts, ...womensShorts];
     gender: "unisex",
     status: "available"
   }
