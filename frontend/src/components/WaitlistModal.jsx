@@ -305,7 +305,7 @@ const WaitlistModal = ({ isOpen, onClose, product }) => {
 
             <div className="success-details">
               <p><strong>{product?.name}</strong></p>
-              <p>{product?.variant}</p>
+              <p>{product?.variant}{isShorts && ` • ${selectedGender === 'mens' ? "Men's" : "Women's"}`}</p>
               <div className="success-sizes">
                 {sizeSelections.map((s, i) => (
                   <span key={i} className="success-size-tag">
