@@ -500,7 +500,7 @@ const SizeGuide = () => {
                     <span className="legend-marker" style={{background: '#00d9ff'}}>A</span>
                     <div>
                       <strong>Waist</strong>
-                      <p>Around the waistband, elastic relaxed</p>
+                      <p>Around the waistband, measured flat with elastic relaxed (not stretched)</p>
                     </div>
                   </div>
                   <div className="legend-item">
@@ -514,14 +514,14 @@ const SizeGuide = () => {
                     <span className="legend-marker" style={{background: '#ffd93d'}}>C</span>
                     <div>
                       <strong>Outseam</strong>
-                      <p>From waistband top to leg hem (outer side)</p>
+                      <p>From top of waistband to leg hem (outer side)</p>
                     </div>
                   </div>
                   <div className="legend-item">
                     <span className="legend-marker" style={{background: '#6bcb77'}}>D</span>
                     <div>
                       <strong>Front Rise</strong>
-                      <p>From waistband top to crotch seam (front)</p>
+                      <p>From top of waistband to crotch seam (front)</p>
                     </div>
                   </div>
                   <div className="legend-item">
