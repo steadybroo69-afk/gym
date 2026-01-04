@@ -6114,26 +6114,26 @@ body {
   border: 2px solid transparent;
 }
 
-/* Men's button - green */
+/* Men's button - bright green */
 .modal-gender-btn:first-child {
-  background: rgba(76, 175, 80, 0.25);
-  color: #4CAF50;
-  border-color: rgba(76, 175, 80, 0.5);
+  background: rgba(0, 230, 118, 0.25);
+  color: #00E676;
+  border-color: rgba(0, 230, 118, 0.5);
 }
 
 .modal-gender-btn:first-child:hover {
-  background: rgba(76, 175, 80, 0.35);
+  background: rgba(0, 230, 118, 0.35);
 }
 
-/* Women's button - pink */
+/* Women's button - yellow */
 .modal-gender-btn:last-child {
-  background: rgba(233, 30, 99, 0.25);
-  color: #E91E63;
-  border-color: rgba(233, 30, 99, 0.5);
+  background: rgba(255, 235, 59, 0.25);
+  color: #FFEB3B;
+  border-color: rgba(255, 235, 59, 0.5);
 }
 
 .modal-gender-btn:last-child:hover {
-  background: rgba(233, 30, 99, 0.35);
+  background: rgba(255, 235, 59, 0.35);
 }
 
 /* Selected state - blue outline */
