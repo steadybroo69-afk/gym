@@ -1,14 +1,14 @@
 import React from 'react';
-import { RotateCcw, Truck, Clock, Mail } from 'lucide-react';
+import { Shield, Truck, Mail, CheckCircle } from 'lucide-react';
 
 const Returns = () => {
   return (
     <div className="info-page">
       <div className="info-container">
         <div className="info-header">
-          <RotateCcw className="info-icon" size={32} />
-          <h1 className="info-title">Returns & Shipping</h1>
-          <p className="info-subtitle">Our policies made simple</p>
+          <Shield className="info-icon" size={32} />
+          <h1 className="info-title">Shipping & Quality Guarantee</h1>
+          <p className="info-subtitle">Built right. Shipped fast. Guaranteed.</p>
         </div>
 
         <div className="info-content">
@@ -40,84 +40,86 @@ const Returns = () => {
             </div>
           </section>
 
-          {/* Returns Section */}
+          {/* Policy Section */}
           <section className="info-section">
-            <h2><RotateCcw size={24} className="section-icon" /> Returns</h2>
+            <h2><Shield size={24} className="section-icon" /> Our Policy</h2>
             
             <div className="policy-highlight">
-              <Clock size={20} />
-              <span>30-Day Return Window</span>
+              <CheckCircle size={20} />
+              <span>Quality Guaranteed</span>
             </div>
 
-            <h3>Return Conditions</h3>
-            <ul className="policy-list">
-              <li>Items must be unworn, unwashed, and in original condition</li>
-              <li>All tags must be attached</li>
-              <li>Items must be returned within 30 days of delivery</li>
-              <li>Original packaging preferred but not required</li>
-            </ul>
+            <p className="policy-statement">
+              Every RAZE product is engineered for performance and built to last. We stand behind the quality of our gear with confidence.
+            </p>
 
-            <h3>Non-Returnable Items</h3>
+            <h3>All Sales Are Final</h3>
+            <p>
+              We do not offer returns or exchanges for sizing, fit preference, or change of mind. We encourage you to review our detailed size guide before purchasing to ensure the perfect fit.
+            </p>
+
+            <div className="policy-list-container">
+              <h3>What's Not Covered</h3>
+              <ul className="policy-list">
+                <li>Sizing or fit preferences</li>
+                <li>Change of mind</li>
+                <li>Items that have been worn, washed, or altered</li>
+                <li>Normal wear and tear</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Defects & Incorrect Orders */}
+          <section className="info-section">
+            <h2><Shield size={24} className="section-icon" /> Defects & Incorrect Orders</h2>
+            
+            <p className="policy-statement">
+              We hold ourselves to the highest standard. If your order arrives defective or incorrect, we'll make it right — no questions asked.
+            </p>
+
+            <h3>We'll Issue a Full Refund For:</h3>
             <ul className="policy-list">
-              <li>Items marked as "Final Sale"</li>
-              <li>Items that have been worn, washed, or altered</li>
-              <li>Items without original tags</li>
+              <li>Manufacturing defects (stitching, fabric flaws, print errors)</li>
+              <li>Incorrect item shipped</li>
+              <li>Incorrect size shipped (different from what you ordered)</li>
+              <li>Damaged items upon arrival</li>
             </ul>
           </section>
 
-          {/* How to Return Section */}
+          {/* How to Claim Section */}
           <section className="info-section">
-            <h2>How to Return</h2>
+            <h2>How to Report an Issue</h2>
             
             <div className="steps-list">
               <div className="step">
                 <div className="step-number">1</div>
                 <div className="step-content">
-                  <h3>Contact Us</h3>
-                  <p>Email <a href="mailto:support@razetraining.com">support@razetraining.com</a> with your order number and reason for return.</p>
+                  <h3>Document the Issue</h3>
+                  <p>Take clear photos of the defect or incorrect item, including the shipping label and packaging.</p>
                 </div>
               </div>
               <div className="step">
                 <div className="step-number">2</div>
                 <div className="step-content">
-                  <h3>Get Your Label</h3>
-                  <p>We'll send you a prepaid return shipping label within 24 hours.</p>
+                  <h3>Contact Us</h3>
+                  <p>Email <a href="mailto:support@razetraining.com">support@razetraining.com</a> with your order number and photos within 7 days of delivery.</p>
                 </div>
               </div>
               <div className="step">
                 <div className="step-number">3</div>
                 <div className="step-content">
-                  <h3>Ship It Back</h3>
-                  <p>Pack your item securely and drop it off at any carrier location.</p>
+                  <h3>Resolution</h3>
+                  <p>Our team will review your claim and respond within 24-48 hours with a resolution.</p>
                 </div>
               </div>
               <div className="step">
                 <div className="step-number">4</div>
                 <div className="step-content">
-                  <h3>Get Refunded</h3>
-                  <p>Refunds are processed within 5-7 business days of receiving your return.</p>
+                  <h3>Refund Processed</h3>
+                  <p>Approved refunds are processed within 5-7 business days to your original payment method.</p>
                 </div>
               </div>
             </div>
-          </section>
-
-          {/* Exchanges Section */}
-          <section className="info-section">
-            <h2>Exchanges</h2>
-            <p>
-              Need a different size? We're happy to exchange your item. Email us at <a href="mailto:support@razetraining.com">support@razetraining.com</a> with your order number and the size you need. We'll ship your new item as soon as we receive the original.
-            </p>
-            <p>
-              <strong>Note:</strong> Exchanges are subject to availability. If your desired size is out of stock, we'll issue a full refund.
-            </p>
-          </section>
-
-          {/* Defective Items */}
-          <section className="info-section">
-            <h2>Defective Items</h2>
-            <p>
-              Quality is our priority. If you receive a defective item, contact us immediately at <a href="mailto:support@razetraining.com">support@razetraining.com</a> with photos of the defect. We'll replace your item at no additional cost.
-            </p>
           </section>
 
           {/* Contact */}
@@ -126,7 +128,7 @@ const Returns = () => {
               <Mail size={20} />
               <div>
                 <h3>Questions?</h3>
-                <p>Our support team is here to help. Email us at <a href="mailto:support@razetraining.com">support@razetraining.com</a> and we'll respond within 24 hours.</p>
+                <p>Our team is here to help. Email us at <a href="mailto:support@razetraining.com">support@razetraining.com</a> and we'll respond within 24 hours.</p>
               </div>
             </div>
           </section>
