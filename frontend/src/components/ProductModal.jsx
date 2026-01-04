@@ -148,14 +148,33 @@ const ProductModal = ({ isOpen, onClose, product }) => {
                     className="size-guide-btn"
                     onClick={() => {
                       onClose();
-                      navigate('/size-guide');
+                      navigate(`/size-guide?tab=${getSizeGuideTab()}`);
                     }}
                   >
                     Size Guide
                   </button>
                 </div>
+                
+                {/* Gender toggle for shorts */}
+                {isShorts && (
+                  <div className="modal-gender-toggle">
+                    <button
+                      className={`modal-gender-btn ${selectedGender === 'mens' ? 'active' : ''}`}
+                      onClick={() => setSelectedGender('mens')}
+                    >
+                      Men's
+                    </button>
+                    <button
+                      className={`modal-gender-btn ${selectedGender === 'womens' ? 'active' : ''}`}
+                      onClick={() => setSelectedGender('womens')}
+                    >
+                      Women's
+                    </button>
+                  </div>
+                )}
+                
                 <div className="modal-sizes">
-                  {(product.sizes || ['XS', 'S', 'M', 'L']).map(size => (
+                  {getSizes().map(size => (
                     <button
                       key={size}
                       className={`modal-size-btn ${selectedSize === size ? 'active' : ''}`}
